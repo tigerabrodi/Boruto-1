@@ -26,7 +26,7 @@ export function Unauthenticated() {
         </Link>
         <Link
           className=" transition ease-in-out duration-200 py-[10px] px-[30px] rounded-[30px] text-blue border border-blue hover:bg-hoverOutlined"
-          to="/signup"
+          to="/signin"
         >
           Sign in
         </Link>
