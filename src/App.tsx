@@ -2,13 +2,14 @@
 
 import { Header } from './components'
 import { AuthContextProvider } from './context/AuthContext'
+import { MenuContextProvider } from './context/MenuContext'
 
 export function App() {
   return (
-    <div>
+    <MenuContextProvider>
       <AuthContextProvider>
         <Header />
       </AuthContextProvider>
-    </div>
+    </MenuContextProvider>
   )
 }
