@@ -128,36 +128,42 @@ export default function CreateProfile() {
         className="m-auto p-[30px] bg-white border border-border rounded-[5px] flex-col w-[450px]"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-dark text-center text-[30px] font-semibold border-b border-border pb-[15px]">
+        <h1
+          tabIndex={0}
+          className="text-dark text-center mx-auto  text-[30px] font-semibold border-b border-border pb-[15px]"
+        >
           Create your account
         </h1>
         {selectedFile ? (
-          <div
-            className="mx-auto my-[30px]"
+          <button
+            tabIndex={0}
+            aria-label="Change your profile picture"
+            className="mx-auto my-[30px] flex"
             onClick={() => setSelectedFile(null)}
           >
             <img
               src={selectedFile}
-              className="rounded-[50%]   mx-auto w-[100px]   "
+              className="rounded-[50%]  mx-auto w-[100px]   "
             />
-          </div>
+          </button>
         ) : (
           <div
+            tabIndex={0}
+            role="input"
+            aria-label="Select your profile picture"
             className="mx-auto my-[30px]"
             onClick={() => filePickerRef.current.click()}
           >
-            <label htmlFor="fileInput">
-              <IoCameraOutline
-                className="rounded-[50%] p-[20px] mx-auto text-blue text-[100px] bg-[#a8bdff]"
-                aria-label="select an image"
-              />
+            <label htmlFor="fileupload">
+              <IoCameraOutline className="cursor-pointer rounded-[50%] p-[20px] mx-auto text-blue text-[100px] bg-[#a8bdff]" />
             </label>
 
             <input
-              id="fileInput"
               type="file"
               name="file"
+              id="fileupload"
               ref={filePickerRef}
+              accept="image/jpeg, image/png"
               onChange={addImageToPost}
               hidden
             />
@@ -248,6 +254,8 @@ export default function CreateProfile() {
         </div>
         <button
           type="submit"
+          aria-label="Done"
+          tabIndex={0}
           className=" cursor-pointer w-[100%]	 transition ease-in-out duration-200 mt-[40px]   py-[10px] px-[30px] bg-blue rounded-[30px] text-white hover:bg-hoverFilled"
           disabled={isAnyFieldEmpty || selectedFile == null}
           onClick={handleSubmit}
