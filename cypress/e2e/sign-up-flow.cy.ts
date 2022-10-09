@@ -1,16 +1,16 @@
-import { faker } from '@faker-js/faker'
+// import { faker } from '@faker-js/faker'
 
-const DEMO_AVATAR = 'demo-avatar.jpg'
+// const DEMO_AVATAR = 'demo-avatar.jpg'
 
-const newUser = {
-  username: faker.internet.userName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  fullName: faker.name.fullName(),
-  age: '21',
-  location: 'Tokyo, Japan',
-  bio: faker.random.words(7),
-}
+// const newUser = {
+//   username: faker.internet.userName(),
+//   email: faker.internet.email(),
+//   password: faker.internet.password(),
+//   fullName: faker.name.fullName(),
+//   age: '21',
+//   location: 'Tokyo, Japan',
+//   bio: faker.random.words(7),
+// }
 
 it('Sign up and create an account', () => {
   cy.visit('/')
@@ -27,4 +27,6 @@ it('Sign up and create an account', () => {
 
   // Redirected to "sign up" page
   cy.findByRole('button', { name: 'unauthenticated nav menu' }).click()
+  cy.findByRole('nav', { name: 'unauthenticated menu' }).should('be.visible')
+  cy.findByRole('link', { name: 'Sign up' }).click()
 })
