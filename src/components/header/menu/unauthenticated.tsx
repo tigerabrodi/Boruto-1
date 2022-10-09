@@ -11,7 +11,7 @@ export function Unauthenticated() {
     <div
       role="nav"
       aria-label="unauthenticated menu"
-      className="absolute right-[30px] top-[102px] bg-white p-[30px] rounded-[5px] border border-border shadow-md"
+      className="absolute right-[30px] top-[85px] bg-white p-[30px] rounded-[5px] border border-border shadow-md"
     >
       <img src={DEFAULT_AVATAR} alt="" className="w-20 mb-[15px] mx-auto" />
       <p

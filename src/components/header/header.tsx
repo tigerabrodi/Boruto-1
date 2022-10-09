@@ -11,7 +11,7 @@ export function Header() {
   const { user } = useAuthContext()
 
   return (
-    <header className="flex items-center justify-between p-6 bg-white border-b border-border ">
+    <header className=" z-10 fixed w-screen flex items-center justify-between py-[15px] px-[30px] bg-white border-b border-border ">
       <Link
         to="/"
         aria-label="Home"
