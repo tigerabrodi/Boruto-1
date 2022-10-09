@@ -11,6 +11,7 @@ import { LoadingSpinner } from './components/spinner'
 
 const Feed = lazy(() => import('./pages/feed/feed'))
 const Signup = lazy(() => import('./pages/signup/signup'))
+const CreateProfile = lazy(() => import('./pages/createProfile/CreateProfile'))
 
 export function App() {
   return (
@@ -34,6 +35,14 @@ export function App() {
               element={
                 <Suspense fallback={<LoadingSpinner />}>
                   <Signup />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/create/profile"
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <CreateProfile />
                 </Suspense>
               }
             />

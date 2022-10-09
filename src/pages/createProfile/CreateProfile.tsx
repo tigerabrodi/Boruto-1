@@ -1,0 +1,260 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/react-in-jsx-scope */
+
+import { updateDoc, doc } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadString } from 'firebase/storage'
+import { useRef, useState } from 'react'
+import toast from 'react-hot-toast'
+import { IoCameraOutline } from 'react-icons/io5'
+import { useNavigate } from 'react-router-dom'
+
+import { useFormState } from '../../hook/useFormState'
+import { firebaseDb, firebaseAuth, firebaseStorage } from '../../lib/firebase'
+import { useLoadingStore } from '../../lib/store'
+
+export default function CreateProfile() {
+  const filePickerRef = useRef<any>(null)
+  const [selectedFile, setSelectedFile] = useState<any>(null)
+  const [loading, setLoading] = useState(false)
+
+  const [isNameError, setIsNameError] = useState(false)
+  const [isLocationError, setIsLocationError] = useState(false)
+  const [isAgeError, setIsAgeError] = useState(false)
+  const [isBioError, setIsBioError] = useState(false)
+
+  const navigate = useNavigate()
+  const { setStatus } = useLoadingStore()
+
+  const {
+    handleChange,
+    formState: { name, age, bio, location },
+  } = useFormState({
+    name: '',
+    age: '',
+    bio: '',
+    location: '',
+  })
+
+  const isAnyFieldEmpty =
+    !name.length || !age.length || !bio.length || !location.length
+
+  const canUserSignUp = () => {
+    const isNameValueEmpty = name.length <= 0
+    if (isNameValueEmpty) {
+      setIsNameError(true)
+      return setTimeout(() => {
+        setIsNameError(false)
+      }, 3000)
+    }
+
+    const isAgeEmpty = name.length <= 0
+    if (isAgeEmpty) {
+      setIsAgeError(true)
+      return setTimeout(() => {
+        setIsAgeError(false)
+      }, 3000)
+    }
+
+    const isLocationEmpty = name.length <= 0
+    if (isLocationEmpty) {
+      setIsLocationError(true)
+      return setTimeout(() => {
+        setIsLocationError(false)
+      }, 3000)
+    }
+
+    const isBioEmpty = name.length <= 0
+    if (isBioEmpty) {
+      setIsBioError(true)
+      return setTimeout(() => {
+        setIsBioError(false)
+      }, 3000)
+    }
+    return true
+  }
+
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault()
+    setStatus('loading')
+
+    if (canUserSignUp() === true) {
+      if (loading) return setLoading(true)
+
+      const imageReference = ref(
+        firebaseStorage,
+        `avatars/${firebaseAuth.currentUser?.uid}/image`
+      )
+
+      await uploadString(imageReference, selectedFile, 'data_url').then(
+        async () => {
+          const downloadURL = await getDownloadURL(imageReference)
+
+          await updateDoc(
+            doc(firebaseDb, `users/${firebaseAuth.currentUser?.uid}`),
+            {
+              age: age,
+              bio: bio,
+              location: location,
+              fullname: name,
+              avatarUrl: downloadURL,
+            }
+          )
+        }
+      )
+
+      setLoading(false)
+      setSelectedFile(null)
+      setStatus('success')
+      navigate('/ ')
+      toast.success('You successfully created your account.')
+    }
+  }
+
+  const addImageToPost = (e: any) => {
+    const reader = new FileReader()
+
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0])
+    }
+
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target?.result)
+    }
+  }
+
+  return (
+    <div className=" h-screen flex justify-center align-center ">
+      <form
+        className="m-auto p-[30px] bg-white border border-border rounded-[5px] flex-col w-[450px]"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-dark text-center text-[30px] font-semibold border-b border-border pb-[15px]">
+          Create your account
+        </h1>
+        {selectedFile ? (
+          <div
+            className="mx-auto my-[30px]"
+            onClick={() => setSelectedFile(null)}
+          >
+            <img
+              src={selectedFile}
+              className="rounded-[50%]   mx-auto w-[100px]   "
+            />
+          </div>
+        ) : (
+          <div
+            className="mx-auto my-[30px]"
+            onClick={() => filePickerRef.current.click()}
+          >
+            <label htmlFor="fileInput">
+              <IoCameraOutline
+                className="rounded-[50%] p-[20px] mx-auto text-blue text-[100px] bg-[#a8bdff]"
+                aria-label="select an image"
+              />
+            </label>
+
+            <input
+              id="fileInput"
+              type="file"
+              name="file"
+              ref={filePickerRef}
+              onChange={addImageToPost}
+              hidden
+            />
+          </div>
+        )}
+
+        <div className="flex justify-between">
+          <div className="flex flex-col   ">
+            <label htmlFor="Full Name" className="mb-[5px] ml-[5px]">
+              Full Name *
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="Full Name"
+              onChange={handleChange}
+              value={name}
+              aria-invalid={isNameError ? 'true' : 'false'}
+              className="border border-border py-[6px] px-[12px] rounded-[30px] w-[250px] "
+            />
+            {isNameError && (
+              <p className="mt-[10px] text-red text-center" role="alert">
+                Please enter your full name
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col  ">
+            <label htmlFor="Age" className="mb-[5px] ml-[5px]">
+              Age *
+            </label>
+
+            <input
+              type="number"
+              name="age"
+              id="Age"
+              onChange={handleChange}
+              value={age}
+              aria-invalid={isAgeError ? 'true' : 'false'}
+              className="border border-border py-[6px] px-[12px] rounded-[30px]  w-[100px]  "
+            />
+            {isAgeError && (
+              <p className="mt-[10px] text-red text-center" role="alert">
+                Please enter your age
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col mt-[30px]">
+          <label className="mb-[5px] ml-[5px]" htmlFor="location">
+            Location *
+          </label>
+
+          <input
+            type="text"
+            name="location"
+            id="location"
+            onChange={handleChange}
+            value={location}
+            aria-invalid={isLocationError ? 'true' : 'false'}
+            className="border border-border py-[6px] px-[12px] rounded-[30px] "
+          />
+          {isLocationError && (
+            <p className="mt-[10px] text-red text-center" role="alert">
+              Please enter your location
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col mt-[30px]">
+          <label className="mb-[5px] ml-[5px]" htmlFor="Biography">
+            Tell us about what you do *
+          </label>
+
+          <textarea
+            name="bio"
+            id="Biography"
+            onChange={handleChange}
+            value={bio}
+            aria-invalid={isBioError ? 'true' : 'false'}
+            className="border border-border py-[10px] px-[20px] rounded-[30px] w-[380px] h-[150px]"
+          />
+          {isBioError && (
+            <p className="mt-[10px] text-red text-center" role="alert">
+              Please enter about yourself
+            </p>
+          )}
+        </div>
+        <button
+          type="submit"
+          className=" cursor-pointer w-[100%]	 transition ease-in-out duration-200 mt-[40px]   py-[10px] px-[30px] bg-blue rounded-[30px] text-white hover:bg-hoverFilled"
+          disabled={isAnyFieldEmpty || selectedFile == null}
+          onClick={handleSubmit}
+        >
+          {loading ? 'Done...' : 'Done'}
+        </button>
+      </form>
+    </div>
+  )
+}

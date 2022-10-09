@@ -88,7 +88,7 @@ export default function Signp() {
   const checkUsername = useCallback(
     functionsDebounce(async (username: string) => {
       if (username.length >= 3) {
-        setStatus('loading')
+        // setStatus('loading')
 
         const usernameDocRef = doc(firebaseDb, `usernames/${username}`)
         const usernameDocSnapshot = await getDoc(usernameDocRef)
@@ -127,15 +127,15 @@ export default function Signp() {
         className="m-auto p-[30px] bg-white border border-border rounded-[5px] flex-col w-[450px]"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-dark text-center text-[30px] font-semibold border-b border-border pb-[15px]">
+        <h1 className="text-dark text-center text-[30px] font-semibold border-b border-border pb-[15px]">
           Sign Up
-        </h2>
+        </h1>
         <div className="flex flex-col mt-[30px]">
-          <label htmlFor="username" className="mb-[5px] ml-[5px]">
-            Username *
+          <label htmlFor="Username" className="mb-[5px] ml-[5px]">
+            Username
           </label>
           <input
-            id="username"
+            id="Username"
             name="username"
             type="text"
             value={username}
@@ -144,6 +144,7 @@ export default function Signp() {
             aria-required="true"
             className="border border-border py-[6px] px-[12px] rounded-[30px] "
           />
+
           {isUsernameError && (
             <p className="mt-[10px] text-red text-center" role="alert">
               Username is already taken.
@@ -159,11 +160,11 @@ export default function Signp() {
           )}
         </div>
         <div className="flex flex-col mt-[30px]">
-          <label htmlFor="email" className="mb-[5px] ml-[5px]">
-            Email *
+          <label htmlFor="Email" className="mb-[5px] ml-[5px]">
+            Email
           </label>
           <input
-            id="email"
+            id="Email"
             name="email"
             type="email"
             value={email}
@@ -188,12 +189,12 @@ export default function Signp() {
         </div>
 
         <div className="flex flex-col mt-[30px]">
-          <label className="mb-[5px] ml-[5px]" htmlFor="password">
-            Password *
+          <label className="mb-[5px] ml-[5px]" htmlFor="Password">
+            Password
           </label>
-          <div className="form__wrapper--wrap relative">
+          <div>
             <input
-              id="password"
+              id="Password"
               name="password"
               type={passwordShown ? 'text' : 'password'}
               value={password}
@@ -217,11 +218,11 @@ export default function Signp() {
         </div>
 
         <div className="flex flex-col mt-[30px]">
-          <label className="mb-[5px] ml-[5px]" htmlFor="confirm-password">
-            Confirm Password *
+          <label className="mb-[5px] ml-[5px]" htmlFor="Confirm password">
+            Confirm Password
           </label>
           <input
-            id="confirm-password"
+            id="Confirm password"
             name="confirmPassword"
             type={passwordShown ? 'text' : 'password'}
             value={confirmPassword}
