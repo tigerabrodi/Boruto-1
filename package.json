@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",
+    "all-of-just": "^0.18.0",
     "firebase": "^9.11.0",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
