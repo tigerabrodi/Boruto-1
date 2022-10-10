@@ -14,6 +14,7 @@ const Signin = lazy(() => import('./pages/signin/signin'))
 const Signup = lazy(() => import('./pages/signup/signup'))
 const CreateProfile = lazy(() => import('./pages/createProfile/CreateProfile'))
 const User = lazy(() => import('./pages/user/user'))
+const CreateArticle = lazy(() => import('./pages/createArticle/CreateArticle'))
 
 export function App() {
   return (
@@ -61,6 +62,15 @@ export function App() {
               element={
                 <Suspense fallback={<LoadingSpinner />}>
                   <User />
+                </Suspense>
+              }
+            />
+
+            <Route
+              path="/article/create"
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <CreateArticle />
                 </Suspense>
               }
             />
