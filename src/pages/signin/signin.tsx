@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-import { useFormState } from '../../hook/useFormState'
-import { useSignInWithEmailAndPassword } from '../../hook/useSignInWithEmailAndPassword'
+import { useFormState } from '../../hooks/useFormState'
+import { useSignInWithEmailAndPassword } from '../../hooks/useSignInWithEmailAndPassword'
 
 export default function Signin() {
   const [passwordShown, setPasswordShown] = useState(false)

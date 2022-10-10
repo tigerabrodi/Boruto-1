@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 import { IoCameraOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 
-import { useFormState } from '../../hook/useFormState'
+import { useFormState } from '../../hooks/useFormState'
 import { firebaseDb, firebaseAuth, firebaseStorage } from '../../lib/firebase'
 import { useLoadingStore } from '../../lib/store'
 
