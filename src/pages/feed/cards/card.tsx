@@ -45,7 +45,7 @@ export function Card({
         style={{
           backgroundImage: `url(${coverUrl})`,
         }}
-      ></div>
+      />
       <Link
         to={`/article/${articleId}`}
         className="text-[30px] font-semibold text-dark hover:underline"
