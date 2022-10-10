@@ -1,20 +1,43 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable react/react-in-jsx-scope */
 
+import { collection, CollectionReference, onSnapshot } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
 import { FiThumbsUp } from 'react-icons/fi'
 import { IoChatbubblesOutline } from 'react-icons/io5'
 
 import { Link } from 'react-router-dom'
-import { ArticleType } from '../../../lib/types'
+import { firebaseDb } from '../../../lib/firebase'
+import { ArticleType, UserType } from '../../../lib/types'
+import { Author } from './author'
 
 type CardProps = ArticleType
 export function Card({
   articleId,
-  //   uid,
+  uid,
   text,
   title,
   readMin,
   coverUrl,
 }: CardProps) {
+  const [profile, setProfile] = useState<UserType[]>([])
+
+  const userCollectionReference = collection(
+    firebaseDb,
+    'users'
+  ) as CollectionReference<UserType>
+
+  useEffect(() => {
+    const getProfile = () => {
+      onSnapshot(userCollectionReference, (snapshot) => {
+        setProfile(
+          snapshot.docs.map((doc) => ({ ...doc.data(), profileId: doc.id }))
+        )
+      })
+    }
+    getProfile()
+  }, [])
+
   return (
     <div className="mx-auto my-[15px] w-[650px] bg-white border border-border p-[30px] rounded-[8px]">
       <div
@@ -34,24 +57,29 @@ export function Card({
         {text.substr(0, 185) + '...'}
       </Link>
       <div className="flex justify-between items-baseline mt-[30px]">
-        <div className="flex items-center">
-          img
-          <div>
-            Author
-            <p>{readMin} read min</p>
-          </div>
-        </div>
+        {profile.map((info) => {
+          return (
+            <Author
+              key={info.profileId}
+              avatarUrl={info.avatarUrl}
+              fullname={info.fullname}
+              readMin={readMin}
+              uid={info.uid}
+              PIN={uid}
+            />
+          )
+        })}
 
         <div className="flex">
           <Link
             to={`/article/${articleId}`}
-            className="mr-[20px] text-[20px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
+            className="mr-[20px] text-[22px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
           >
             <FiThumbsUp />
           </Link>
           <Link
             to={`/article/${articleId}`}
-            className="  text-[23px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
+            className="  text-[25px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
           >
             <IoChatbubblesOutline />
           </Link>
