@@ -123,7 +123,7 @@ export default function CreateProfile() {
   }
 
   return (
-    <div className=" h-screen flex justify-center align-center ">
+    <div className=" h-screen flex justify-center align-center pt-[100px]">
       <form
         className="m-auto p-[30px] bg-white border border-border rounded-[5px] flex-col w-[450px]"
         onSubmit={handleSubmit}
