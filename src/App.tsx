@@ -10,6 +10,7 @@ import { ToastOptions } from './lib/theme'
 import { LoadingSpinner } from './components/spinner'
 
 const Feed = lazy(() => import('./pages/feed/feed'))
+const Signin = lazy(() => import('./pages/signin/signin'))
 const Signup = lazy(() => import('./pages/signup/signup'))
 const CreateProfile = lazy(() => import('./pages/createProfile/CreateProfile'))
 
@@ -27,6 +28,14 @@ export function App() {
               element={
                 <Suspense fallback={<LoadingSpinner />}>
                   <Feed />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Signin />
                 </Suspense>
               }
             />
