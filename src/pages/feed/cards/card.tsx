@@ -48,7 +48,7 @@ export function Card({
       ></div>
       <Link
         to={`/article/${articleId}`}
-        className="text-[30px] font-semibold text-dark"
+        className="text-[30px] font-semibold text-dark hover:underline"
       >
         {title}
       </Link>
@@ -66,6 +66,7 @@ export function Card({
               readMin={readMin}
               uid={info.uid}
               PIN={uid}
+              profileId={info.profileId}
             />
           )
         })}
@@ -73,6 +74,7 @@ export function Card({
         <div className="flex">
           <Link
             to={`/article/${articleId}`}
+            aria-label="Go to article"
             className="mr-[20px] text-[22px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
           >
             <FiThumbsUp />

@@ -1,7 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { HiOutlineBookOpen } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 
 type AuthorProps = {
+  profileId: string
   avatarUrl: string
   fullname: string
   readMin: string
@@ -10,6 +12,7 @@ type AuthorProps = {
 }
 
 export function Author({
+  profileId,
   avatarUrl,
   fullname,
   readMin,
@@ -22,7 +25,12 @@ export function Author({
         <div className="flex items-center">
           <img src={avatarUrl} alt="" className="w-[55px] rounded-[50%]" />
           <div className="ml-[10px]">
-            <p className="font-semibold mb-[3px]">{fullname}</p>
+            <Link
+              to={`/profile/${profileId}`}
+              className="font-semibold mb-[3px] hover:underline"
+            >
+              {fullname}
+            </Link>
             <p className="text-darkGrey flex items-center">
               <HiOutlineBookOpen className="text-[20px] mr-[5px]" />
               {readMin} read min
