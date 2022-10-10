@@ -1,22 +1,36 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FiLogOut, FiUser, FiFeather } from 'react-icons/fi'
 import { useAuthContext } from '../../../context/AuthContext'
-import { firebaseDb } from '../../../lib/firebase'
+import { firebaseAuth, firebaseDb } from '../../../lib/firebase'
 import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
+import { useLoadingStore } from '../../../lib/store'
+import { useMenuContext } from '../../../context/MenuContext'
 
 export default function Authenticated() {
   const [isUser, setIsUser] = useState<DocumentData>()
-
+  const { setIsOpen } = useMenuContext()
+  const { setStatus } = useLoadingStore()
   const { user } = useAuthContext()
+  const navigate = useNavigate()
 
   const avatarDocumentReference = doc(firebaseDb, `users/${user?.uid}`)
 
   onSnapshot(avatarDocumentReference, (doc) => {
     setIsUser(doc.data())
   })
+
+  const handleLogOut = async () => {
+    setIsOpen(false)
+    setStatus('loading')
+    firebaseAuth.signOut()
+    navigate('/')
+    toast.success('Successfully signed out of your account.')
+    setStatus('success')
+  }
 
   return (
     <div
@@ -38,12 +52,14 @@ export default function Authenticated() {
             </div>{' '}
           </div>
           <Link
+            onClick={() => setIsOpen(false)}
             className="transition ease-in-out duration-200 flex align-center text-[18px] px-[30px] py-[20px] hover:bg-border"
             to="/profile"
           >
             <FiUser className="text-[23px] mr-[10px] self-center" /> My Profile
           </Link>
           <Link
+            onClick={() => setIsOpen(false)}
             to="/article/create"
             className="transition ease-in-out duration-200 flex align-center text-[18px] px-[30px] py-[20px] hover:bg-border border-b border-border"
           >
@@ -51,6 +67,7 @@ export default function Authenticated() {
             Article
           </Link>
           <Link
+            onClick={handleLogOut}
             className="transition ease-in-out duration-200 flex align-center text-error text-[18px] px-[30px] py-[20px] hover:bg-border "
             to="/"
           >
