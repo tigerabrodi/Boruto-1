@@ -26,4 +26,7 @@ it('Should sign user in', () => {
       'be.visible'
     )
   })
+
+  // Authenticated nav button should exist
+  cy.findByRole('button', { name: 'authenticated nav menu' }).should('exist')
 })

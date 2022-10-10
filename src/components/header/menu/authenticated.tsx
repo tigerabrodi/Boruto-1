@@ -72,7 +72,7 @@ export default function Authenticated() {
             to="/"
           >
             <FiLogOut className="text-[23px] mr-[10px] self-center" />
-            Log Out
+            Sign Out
           </Link>
         </>
       )}
