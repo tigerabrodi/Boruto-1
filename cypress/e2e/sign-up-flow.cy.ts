@@ -25,7 +25,7 @@ it('Sign up and create an account', () => {
     'not.exist'
   )
 
-  // Redirected to "sign up" page
+  // Redirects to sign up page
   cy.findByRole('button', { name: 'unauthenticated nav menu' }).click()
   cy.findByRole('nav', { name: 'unauthenticated menu' }).should('be.visible')
   cy.findByRole('link', { name: 'Sign up' }).click()
@@ -47,4 +47,9 @@ it('Sign up and create an account', () => {
   cy.findByLabelText('Location *').type(user.location)
   cy.findByLabelText('Biography').type(user.bio)
   cy.findByRole('button', { name: 'Done' }).click()
+
+  // Toast message
+  cy.findByRole('status').within(() => {
+    cy.findByText('Successfully created your account.').should('be.visible')
+  })
 })

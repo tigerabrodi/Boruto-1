@@ -106,7 +106,7 @@ export default function CreateProfile() {
       setSelectedFile(null)
       setStatus('success')
       navigate('/ ')
-      toast.success('You successfully created your account.')
+      toast.success('Successfully created your account.')
     }
   }
 
