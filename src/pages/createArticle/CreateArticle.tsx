@@ -73,7 +73,7 @@ export default function CreateArticle() {
     setStatus('success')
     setSelectedField(null)
     navigate('/')
-    toast.success('You successfully created a blog article.')
+    toast.success('Successfully created a blog article.')
   }
 
   const addImageToPost = (e: any) => {
@@ -102,18 +102,18 @@ export default function CreateArticle() {
               <IoImageOutline className="text-[20px] mr-[5px]" /> Add Cover
             </button>
             <input
-              id="fileInput"
+              aria-label="Add cover"
               type="file"
               name="file"
               ref={filePickerRef}
               onChange={addImageToPost}
-              hidden
+              className="opacity-0 absolute"
             />
 
             <button
               onClick={() => setSubtitle(true)}
-              aria-label="Add subtitle to your blog article"
-              className="flex items-center text-[15px] rounded-[30px] ml-[10px] py-[8px] px-[12px] border border-border text-darkGrey transition ease-in-out duration-200 hover:bg-border"
+              aria-label="Add subtitle"
+              className="z-[2] flex items-center text-[15px] rounded-[30px] ml-[10px] py-[8px] px-[12px] border border-border text-darkGrey transition ease-in-out duration-200 hover:bg-border"
             >
               <RiText className="text-[20px] mr-[5px]" /> Add Subtitle
             </button>
@@ -128,7 +128,7 @@ export default function CreateArticle() {
               id="Read minute"
               placeholder="0"
               onChange={(event) => setMinuteField(event?.target.value)}
-              className=" placeholder-darkGrey text-center text-darkGrey flex items-center w-[30px] border-b border-border  "
+              className="z-[2] placeholder-darkGrey text-center text-darkGrey flex items-center w-[30px] border-b border-border  "
             />
             <span className="pl-[10px] border-b border-border text-darkGrey">
               min read
@@ -156,15 +156,15 @@ export default function CreateArticle() {
         )}
 
         <div className="flex mt-[-10px] flex-col px-[30px]">
-          <label htmlFor="Article title" className="opacity-0 absolute">
+          <label htmlFor="Article Title" className="opacity-0 absolute">
             Article Title
           </label>
           <textarea
             name="title"
-            id="Article title"
+            id="Article Title"
             placeholder="Article title..."
             onChange={(event) => setTitleField(event.target.value)}
-            className="font-semibold h-[100px] text-[36px] placeholder-dark text-dark resize-none"
+            className="z-[2] font-semibold h-[100px] text-[36px] placeholder-dark text-dark resize-none"
           />
         </div>
         {subtitle === true && (
