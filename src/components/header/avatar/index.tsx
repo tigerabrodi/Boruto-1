@@ -26,7 +26,10 @@ export function Avatar() {
       {user?.uid ? (
         <>
           {avatar && (
-            <button aria-label="authenticated nav menu">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="authenticated nav menu"
+            >
               <img
                 src={avatar.avatarUrl}
                 alt=""
