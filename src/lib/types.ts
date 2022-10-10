@@ -18,3 +18,7 @@ export type UserType = {
   avatarUrl: string
   profileId: string
 }
+
+export type ParamsType = {
+  id: string | undefined
+}
