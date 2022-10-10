@@ -26,7 +26,7 @@ export const useCreateUserWithEmailAndPassword = () => {
       setDoc(userRef, {
         username,
         email,
-        name: '',
+        fullname: '',
         location: '',
         age: '',
         bio: '',
