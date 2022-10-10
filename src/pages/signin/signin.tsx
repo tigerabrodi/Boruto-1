@@ -69,7 +69,7 @@ export default function Signin() {
             <input
               type={passwordShown ? 'text' : 'password'}
               name="password"
-              id=" password"
+              id="Password"
               onChange={handleChange}
               aria-required="true"
               value={password}

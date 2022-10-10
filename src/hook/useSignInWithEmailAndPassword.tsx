@@ -21,7 +21,7 @@ export const useSignInWithEmailAndPassword = () => {
       await signInWithEmailAndPasswordAuth(firebaseAuth, email, password)
 
       navigate('/')
-      toast.success('Successfully signed in into your account!')
+      toast.success('Successfully signed in into your account.')
       setStatus('success')
     } catch (error) {
       setIsSignInError(true)
