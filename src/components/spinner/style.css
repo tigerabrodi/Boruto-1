@@ -15,7 +15,7 @@
 
 .spin {
   z-index: 1000;
-  color: var(--blue);
+  color: #3466f6;
   font-size: 4rem;
   position: relative;
   animation: spin 0.6s linear infinite;
