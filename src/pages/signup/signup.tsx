@@ -242,7 +242,7 @@ export default function Signp() {
           type="submit"
           disabled={isAnyFieldEmpty || isUsernameError}
         >
-          Sign Up
+          Sign up
         </button>
         <p className="text-center">
           Already have an account?{' '}

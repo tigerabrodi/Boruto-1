@@ -147,15 +147,18 @@ export default function CreateProfile() {
             />
           </button>
         ) : (
-          <div
+          <button
             tabIndex={0}
             role="input"
             aria-label="Select your profile picture"
-            className="mx-auto my-[30px]"
+            className="mx-auto my-[30px] flex"
             onClick={() => filePickerRef.current.click()}
           >
             <label htmlFor="fileupload">
-              <IoCameraOutline className="cursor-pointer rounded-[50%] p-[20px] mx-auto text-blue text-[100px] bg-[#a8bdff]" />
+              <IoCameraOutline
+                tabIndex={-1}
+                className="cursor-pointer rounded-[50%] p-[20px] mx-auto text-blue text-[100px] bg-[#a8bdff]"
+              />
             </label>
 
             <input
@@ -164,10 +167,11 @@ export default function CreateProfile() {
               id="fileupload"
               ref={filePickerRef}
               accept="image/jpeg, image/png"
+              aria-label="Choose File"
               onChange={addImageToPost}
               hidden
             />
-          </div>
+          </button>
         )}
 
         <div className="flex justify-between">
@@ -241,6 +245,7 @@ export default function CreateProfile() {
           <textarea
             name="bio"
             id="Biography"
+            aria-label="Biography"
             onChange={handleChange}
             value={bio}
             aria-invalid={isBioError ? 'true' : 'false'}
