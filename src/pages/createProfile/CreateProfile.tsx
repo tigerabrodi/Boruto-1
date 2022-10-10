@@ -147,11 +147,11 @@ export default function CreateProfile() {
             />
           </button>
         ) : (
-          <button
+          <div
             tabIndex={0}
             role="input"
             aria-label="Select your profile picture"
-            className="mx-auto my-[30px] flex"
+            className="mx-auto my-[30px] "
             onClick={() => filePickerRef.current.click()}
           >
             <label htmlFor="fileupload">
@@ -171,7 +171,7 @@ export default function CreateProfile() {
               onChange={addImageToPost}
               hidden
             />
-          </button>
+          </div>
         )}
 
         <div className="flex justify-between">

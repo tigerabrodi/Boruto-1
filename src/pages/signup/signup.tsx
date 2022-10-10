@@ -146,7 +146,7 @@ export default function Signp() {
           />
 
           {isUsernameError && (
-            <p className="mt-[10px] text-red text-center" role="alert">
+            <p className="mt-[10px] text-error text-center" role="alert">
               Username is already taken.
             </p>
           )}
@@ -177,12 +177,12 @@ export default function Signp() {
             aria-required="true"
           />
           {isEmailError && (
-            <p className="mt-[10px] text-red text-center" role="alert">
+            <p className="mt-[10px] text-error text-center" role="alert">
               Email is not valid.
             </p>
           )}
           {isEmailTaken && (
-            <p className="mt-[10px] text-red text-center" role="alert">
+            <p className="mt-[10px] text-error text-center" role="alert">
               Email is already taken.
             </p>
           )}
@@ -192,7 +192,7 @@ export default function Signp() {
           <label className="mb-[5px] ml-[5px]" htmlFor="Password">
             Password
           </label>
-          <div>
+          <div className="relative">
             <input
               id="Password"
               name="password"
@@ -204,7 +204,7 @@ export default function Signp() {
               className="border border-border py-[6px] px-[12px] rounded-[30px] w-[100%]"
             />
             {isPasswordError && (
-              <p className="mt-[10px] text-red text-center" role="alert">
+              <p className="mt-[10px] text-error text-center" role="alert">
                 Password must be at least 6 characters.
               </p>
             )}
@@ -232,7 +232,7 @@ export default function Signp() {
             className="border border-border py-[6px] px-[12px] rounded-[30px] "
           />
           {isConfirmPasswordError && (
-            <p className="mt-[10px] text-red text-center" role="alert">
+            <p className="mt-[10px] text-error text-center" role="alert">
               Passwords do not match.
             </p>
           )}
