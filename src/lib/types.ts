@@ -40,7 +40,7 @@ export const TimestampSchema = z.object({
 
 export type Timestamp = z.infer<typeof TimestampSchema>
 
-export type Like = {
+export type LikeType = {
   likeUid: string
   article: string
   likeId: string

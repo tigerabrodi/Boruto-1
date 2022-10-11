@@ -3,12 +3,11 @@
 
 import { collection, CollectionReference, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { FiThumbsUp } from 'react-icons/fi'
-import { IoChatbubblesOutline } from 'react-icons/io5'
 
 import { Link } from 'react-router-dom'
 import { firebaseDb, ArticleType, UserType } from '../../../lib/'
 import { Author } from '.'
+import { Icons } from './icons'
 
 type CardProps = ArticleType
 export function Card({
@@ -72,21 +71,7 @@ export function Card({
           )
         })}
 
-        <div className="flex items-center">
-          <Link
-            to={`/article/${articleId}`}
-            aria-label="Go to article"
-            className="text-lightGrey mr-[20px] text-[21px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
-          >
-            <FiThumbsUp />
-          </Link>
-          <Link
-            to={`/article/${articleId}`}
-            className="text-lightGrey  text-[25px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
-          >
-            <IoChatbubblesOutline />
-          </Link>
-        </div>
+        <Icons articleId={articleId} />
       </div>
     </div>
   )
