@@ -1,5 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-export function Container() {
+import { T } from '.'
+
+export function Container({ articleId }: T) {
   return <div>container</div>
 }
