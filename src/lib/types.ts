@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export type CommentType = {
-  CommentId: string
+  commentId: string
   comment: string
   commentUid: string | undefined
   timestamp: { seconds: number; nanoseconds: number }
