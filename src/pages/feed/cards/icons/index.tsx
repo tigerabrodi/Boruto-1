@@ -3,8 +3,7 @@ import { collection, CollectionReference, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { FiThumbsUp } from 'react-icons/fi'
 import { IoChatbubblesOutline } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
-import { firebaseDb, LikeType } from '../../../../lib'
+import { CommentType, firebaseDb, LikeType } from '../../../../lib'
 
 type IconsProps = {
   articleId: string
@@ -26,22 +25,41 @@ export function Icons({ articleId }: IconsProps) {
       unsubscribe()
     }
   }, [])
+
+  const [comments, setComments] = useState<CommentType[]>([])
+
+  const commentsCollectionReference = collection(
+    firebaseDb,
+    `articles/${articleId}/comments`
+  ) as CollectionReference<CommentType>
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(commentsCollectionReference, (snapshot) =>
+      setComments(snapshot.docs.map((doc) => ({ ...doc.data() })))
+    )
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
+
   return (
     <div className="flex items-center">
-      <Link
-        to={`/article/${articleId}`}
+      <p
         aria-label="Go to article"
-        className="text-lightGrey mr-[20px] text-[21px] hover:bg-border   px-[15px] rounded-[30px] transition ease-in-out duration-200 flex items-center"
+        className="text-lightGrey mr-[20px] text-[21px]  px-[15px] rounded-[30px] flex items-center"
       >
-        <FiThumbsUp className="mr-[5px]" />{' '}
-        {likes?.length > 0 && <span className="mt-[3px]">{likes?.length}</span>}
-      </Link>
-      <Link
-        to={`/article/${articleId}`}
-        className="text-lightGrey  text-[25px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
-      >
-        <IoChatbubblesOutline />
-      </Link>
+        <FiThumbsUp className="mr-[5px]" />
+        {likes?.length >= 0 && (
+          <span className="mt-[3px]">{likes?.length}</span>
+        )}
+      </p>
+      <p className="text-lightGrey   text-[25px]  px-[15px] rounded-[30px] flex items-center">
+        <IoChatbubblesOutline className="mr-[5px]" />
+        {comments?.length >= 0 && (
+          <span className="mt-[3px] text-[21px]">{comments?.length}</span>
+        )}
+      </p>
     </div>
   )
 }
