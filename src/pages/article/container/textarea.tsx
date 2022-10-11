@@ -62,7 +62,7 @@ export function Textarea({ articleId }: T) {
   return (
     <div className="w-[800px] bg-white border border-border rounded-[8px]">
       {profile && (
-        <div className="flex items-center p-[30px] border-b border-border">
+        <div className="flex items-center py-[20px] px-[30px] border-b border-border">
           <img
             src={profile.avatarUrl}
             alt="Your profile picture"
