@@ -32,12 +32,12 @@ export const useCreateUserWithEmailAndPassword = () => {
         bio: '',
         avatarUrl: '',
         createdAt: serverTimestamp(),
-        uid: user.user.uid,
+        pin: user.user.uid,
       })
 
       const usernameRef = doc(firebaseDb, `usernames/${username}`)
       setDoc(usernameRef, {
-        uid: user.user?.uid,
+        pin: user.user?.uid,
       })
     } catch (error) {
       setSignUpError(error as FirebaseError)
