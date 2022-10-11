@@ -1,4 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
+
+/* eslint-disable react/react-in-jsx-scope */
 import { collection, CollectionReference, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { FiThumbsUp } from 'react-icons/fi'
@@ -8,7 +10,7 @@ import { CommentType, firebaseDb, LikeType } from '../../../../lib'
 type IconsProps = {
   articleId: string
 }
-export function Icons({ articleId }: IconsProps) {
+export function Details({ articleId }: IconsProps) {
   const [likes, setLikes] = useState<LikeType[]>([])
   const [comments, setComments] = useState<CommentType[]>([])
 
@@ -44,19 +46,16 @@ export function Icons({ articleId }: IconsProps) {
 
   return (
     <div className="flex items-center">
-      <p
-        aria-label="Go to article"
-        className="text-lightGrey mr-[30px] text-[21px] rounded-[30px] flex items-center"
-      >
+      <p className="text-lightGrey mr-[19px] text-[18px] flex items-center">
         <FiThumbsUp className="mr-[5px]" />
         {likes?.length >= 0 && (
-          <span className="mt-[3px]">{likes?.length}</span>
+          <span className="text-[15px]">{likes?.length}</span>
         )}
       </p>
-      <p className="text-lightGrey   text-[25px] rounded-[30px] flex items-center">
+      <p className="text-lightGrey   text-[21px] flex items-center">
         <IoChatbubblesOutline className="mr-[5px]" />
         {comments?.length >= 0 && (
-          <span className="mt-[3px] text-[21px]">{comments?.length}</span>
+          <span className="text-[15px]">{comments?.length}</span>
         )}
       </p>
     </div>
