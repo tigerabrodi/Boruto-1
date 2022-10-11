@@ -2,8 +2,12 @@
 
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { AuthContextProvider } from './context/AuthContext'
-import { MenuContextProvider } from './context/MenuContext'
+import {
+  AuthContextProvider,
+  MenuContextProvider,
+  InfoContextProvider,
+  useInfoContext,
+} from './context'
 import { Toaster } from 'react-hot-toast'
 import { ToastOptions } from './lib/theme'
 import { Header, LoadingSpinner, InfoModal } from './components'
@@ -18,85 +22,89 @@ const Article = lazy(() => import('./pages/article'))
 const Profile = lazy(() => import('./pages/profile'))
 
 export function App() {
+  const { popup } = useInfoContext()
   return (
     <div>
-      <InfoModal />
-      <Toaster position="top-center" toastOptions={ToastOptions} />
-      <LoadingSpinner />
-      <AuthContextProvider>
-        <MenuContextProvider>
-          <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <Feed />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/signin"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <Signin />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <Signup />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/create/profile"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <CreateProfile />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <User />
-                </Suspense>
-              }
-            />
+      <InfoContextProvider>
+        {popup === true && <InfoModal />}
 
-            <Route
-              path="/article/create"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <CreateArticle />
-                </Suspense>
-              }
-            />
+        <Toaster position="top-center" toastOptions={ToastOptions} />
+        <LoadingSpinner />
+        <AuthContextProvider>
+          <MenuContextProvider>
+            <Header />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <Feed />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/signin"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <Signin />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <Signup />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/create/profile"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <CreateProfile />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <User />
+                  </Suspense>
+                }
+              />
 
-            <Route
-              path="/article/:id"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <Article />
-                </Suspense>
-              }
-            />
+              <Route
+                path="/article/create"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <CreateArticle />
+                  </Suspense>
+                }
+              />
 
-            <Route
-              path="/profile/:id"
-              element={
-                <Suspense fallback={<LoadingSpinner />}>
-                  <Profile />
-                </Suspense>
-              }
-            />
-          </Routes>
-        </MenuContextProvider>
-      </AuthContextProvider>
+              <Route
+                path="/article/:id"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <Article />
+                  </Suspense>
+                }
+              />
+
+              <Route
+                path="/profile/:id"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <Profile />
+                  </Suspense>
+                }
+              />
+            </Routes>
+          </MenuContextProvider>
+        </AuthContextProvider>
+      </InfoContextProvider>
     </div>
   )
 }

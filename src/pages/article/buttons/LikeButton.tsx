@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from 'react'
 import { FiThumbsUp } from 'react-icons/fi'
 import { ButtonsProps } from '.'
-import { useAuthContext } from '../../../context'
+import { useAuthContext, useInfoContext } from '../../../context'
 import { firebaseDb, LikeType } from '../../../lib'
 
 export function LikeButton({ articleId }: ButtonsProps) {
@@ -23,6 +23,7 @@ export function LikeButton({ articleId }: ButtonsProps) {
   ) as CollectionReference<LikeType>
 
   const { user } = useAuthContext()
+  const { setPopup } = useInfoContext()
 
   useEffect(
     () =>
@@ -57,24 +58,41 @@ export function LikeButton({ articleId }: ButtonsProps) {
   }
   return (
     <>
-      {hasLiked ? (
-        <button
-          aria-label="like button"
-          onClick={likeArticle}
-          className="text-[28px] text-blue mb-[50px] flex items-center"
-        >
-          <FiThumbsUp />{' '}
-          {likes.length >= 0 && (
-            <span className="text-[22px] mb-[-4px] ml-[10px]">
-              {likes.length}
-            </span>
+      {user?.uid ? (
+        <>
+          {hasLiked ? (
+            <button
+              aria-label="like button"
+              onClick={likeArticle}
+              className="text-[26px] text-blue mb-[50px] flex items-center"
+            >
+              <FiThumbsUp />{' '}
+              {likes.length >= 0 && (
+                <span className="text-[22px] mb-[-4px] ml-[10px]">
+                  {likes.length}
+                </span>
+              )}
+            </button>
+          ) : (
+            <button
+              aria-label="like button"
+              onClick={likeArticle}
+              className="text-[26px] text-darkGrey mb-[50px] flex items-center"
+            >
+              <FiThumbsUp />{' '}
+              {likes.length >= 0 && (
+                <span className="text-[22px] mb-[-4px] ml-[10px]">
+                  {likes.length}
+                </span>
+              )}
+            </button>
           )}
-        </button>
+        </>
       ) : (
         <button
           aria-label="like button"
-          onClick={likeArticle}
-          className="text-[28px] text-darkGrey mb-[50px] flex items-center"
+          onClick={() => setPopup(true)}
+          className="text-[26px] text-darkGrey mb-[50px] flex items-center"
         >
           <FiThumbsUp />{' '}
           {likes.length >= 0 && (

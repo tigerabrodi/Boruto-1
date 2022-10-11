@@ -26,16 +26,11 @@ export function CommentButton({ articleId }: ButtonsProps) {
     }
   }, [firebaseDb, articleId])
   return (
-    <button
-      aria-label="comment button"
-      className="text-[32px]  text-darkGrey  text-darkGrey mb-[50px] flex items-center"
-    >
+    <p className="text-[32px]  text-darkGrey  text-darkGrey mb-[50px] flex items-center">
       <IoChatbubblesOutline />
-      {comments.length > 0 && (
-        <span className="text-[22px] mb-[-4px] ml-[10px]">
-          {comments.length}
-        </span>
+      {comments.length >= 0 && (
+        <span className="text-[22px]  ml-[10px]">{comments.length}</span>
       )}
-    </button>
+    </p>
   )
 }
