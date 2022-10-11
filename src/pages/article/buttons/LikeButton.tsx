@@ -61,11 +61,11 @@ export function LikeButton({ articleId }: ButtonsProps) {
         <button
           aria-label="like button"
           onClick={likeArticle}
-          className="text-[30px] text-blue mb-[50px] flex items-center"
+          className="text-[28px] text-blue mb-[50px] flex items-center"
         >
           <FiThumbsUp />{' '}
           {likes.length >= 0 && (
-            <span className="text-[25px] mb-[-8px] ml-[10px]">
+            <span className="text-[22px] mb-[-4px] ml-[10px]">
               {likes.length}
             </span>
           )}
@@ -74,11 +74,11 @@ export function LikeButton({ articleId }: ButtonsProps) {
         <button
           aria-label="like button"
           onClick={likeArticle}
-          className="text-[30px] text-darkGrey mb-[50px] flex items-center"
+          className="text-[28px] text-darkGrey mb-[50px] flex items-center"
         >
           <FiThumbsUp />{' '}
           {likes.length >= 0 && (
-            <span className="text-[25px] mb-[-8px] ml-[10px]">
+            <span className="text-[22px] mb-[-4px] ml-[10px]">
               {likes.length}
             </span>
           )}

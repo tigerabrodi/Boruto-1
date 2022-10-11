@@ -28,11 +28,11 @@ export function CommentButton({ articleId }: ButtonsProps) {
   return (
     <button
       aria-label="comment button"
-      className="text-[36px]  text-darkGrey  text-darkGrey mb-[50px] flex items-center"
+      className="text-[32px]  text-darkGrey  text-darkGrey mb-[50px] flex items-center"
     >
       <IoChatbubblesOutline />
       {comments.length > 0 && (
-        <span className="text-[25px] mb-[-8px] ml-[10px]">
+        <span className="text-[22px] mb-[-4px] ml-[10px]">
           {comments.length}
         </span>
       )}
