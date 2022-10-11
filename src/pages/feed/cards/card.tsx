@@ -71,17 +71,17 @@ export function Card({
           )
         })}
 
-        <div className="flex">
+        <div className="flex items-center">
           <Link
             to={`/article/${articleId}`}
             aria-label="Go to article"
-            className="mr-[20px] text-[22px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
+            className="text-lightGrey mr-[20px] text-[21px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
           >
             <FiThumbsUp />
           </Link>
           <Link
             to={`/article/${articleId}`}
-            className="  text-[25px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
+            className="text-lightGrey  text-[25px] hover:bg-border py-[3px] px-[15px] rounded-[30px] transition ease-in-out duration-200 "
           >
             <IoChatbubblesOutline />
           </Link>

@@ -26,7 +26,7 @@ export function Author({
             className="w-[55px] rounded-[50%] mr-[20px]"
           />
           <Link
-            className=" text-[18px]   mr-[30px] hover:underline"
+            className=" text-[18px] mr-[30px] hover:underline"
             to={`/profile/${profileId}`}
           >
             {fullname}

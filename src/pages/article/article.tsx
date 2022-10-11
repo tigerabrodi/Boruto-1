@@ -20,14 +20,20 @@ export default function Article() {
 
   const avatarDocumentReference = doc(firebaseDb, `articles/${id}`)
 
-  onSnapshot(avatarDocumentReference, (doc) => {
-    setIsArticle(doc.data())
-  })
-
   const userCollectionReference = collection(
     firebaseDb,
     'users'
   ) as CollectionReference<UserType>
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(avatarDocumentReference, (doc) => {
+      setIsArticle(doc.data())
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
 
   useEffect(() => {
     const getProfile = () => {

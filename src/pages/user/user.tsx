@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import { firebaseDb } from '../../lib/firebase'
 
@@ -12,9 +13,15 @@ export default function User() {
 
   const avatarDocumentReference = doc(firebaseDb, `users/${user?.uid}`)
 
-  onSnapshot(avatarDocumentReference, (doc) => {
-    setProfile(doc.data())
-  })
+  useEffect(() => {
+    const unsubscribe = onSnapshot(avatarDocumentReference, (doc) => {
+      setProfile(doc.data())
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
 
   return (
     <div className=" h-screen flex flex-col pt-[130px]">
