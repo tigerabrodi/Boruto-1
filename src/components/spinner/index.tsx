@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { CgSpinner } from 'react-icons/cg'
-import { useLoadingStore } from '../../lib/store'
+import { useLoadingStore } from '../../lib/'
 
 import './style.css'
 

@@ -7,8 +7,7 @@ import {
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { firebaseDb } from '../../lib/firebase'
-import { ParamsType, UserType } from '../../lib/types'
+import { firebaseDb, ParamsType, UserType } from '../../lib'
 import { Author } from './author'
 
 /* eslint-disable react/react-in-jsx-scope */
@@ -70,7 +69,7 @@ export default function Article() {
                   profileId={info.profileId}
                   avatarUrl={info.avatarUrl}
                   fullname={info.fullname}
-                  PIN={info.uid}
+                  pin={info.pin}
                   uid={isArticle.uid}
                   createdAt={info.createdAt}
                   readMin={isArticle.readMin}

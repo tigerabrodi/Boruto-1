@@ -8,17 +8,17 @@ import {
   addDoc,
   collection,
 } from 'firebase/firestore'
-import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { useRef, useState } from 'react'
-import toast from 'react-hot-toast'
-import { FiX } from 'react-icons/fi'
-import { IoImageOutline } from 'react-icons/io5'
-import { RiText } from 'react-icons/ri'
+import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
-import { useAuthContext } from '../../context/AuthContext'
-import { firebaseDb, firebaseStorage } from '../../lib/firebase'
-import { useLoadingStore } from '../../lib/store'
+import { FiX } from 'react-icons/fi'
+import { RiText } from 'react-icons/ri'
+import { IoImageOutline } from 'react-icons/io5'
+
+import { useAuthContext } from '../../context/'
+import { firebaseDb, firebaseStorage, useLoadingStore } from '../../lib/'
 // import { Preview } from './preview/preview'
 
 export default function CreateArticle() {

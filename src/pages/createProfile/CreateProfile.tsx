@@ -1,16 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/react-in-jsx-scope */
+import toast from 'react-hot-toast'
+import { useRef, useState } from 'react'
 
 import { updateDoc, doc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
-import { useRef, useState } from 'react'
-import toast from 'react-hot-toast'
-import { IoCameraOutline } from 'react-icons/io5'
-import { useNavigate } from 'react-router-dom'
 
-import { useFormState } from '../../hooks/useFormState'
-import { firebaseDb, firebaseAuth, firebaseStorage } from '../../lib/firebase'
-import { useLoadingStore } from '../../lib/store'
+import { useFormState } from '../../hooks/'
+import { useNavigate } from 'react-router-dom'
+import { IoCameraOutline } from 'react-icons/io5'
+
+import {
+  firebaseDb,
+  firebaseAuth,
+  firebaseStorage,
+  useLoadingStore,
+} from '../../lib/'
 
 export default function CreateProfile() {
   const filePickerRef = useRef<any>(null)

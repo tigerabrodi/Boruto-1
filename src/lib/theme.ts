@@ -20,3 +20,6 @@ export const ToastOptions = {
     },
   },
 }
+
+export const DEFAULT_AVATAR =
+  'https://hashnode.com/_next/image?url=https%3A%2F%2Fcdn.hashnode.com%2Fres%2Fhashnode%2Fimage%2Fupload%2Fv1659089761812%2FfsOct5gl6.png&w=1920&q=75'

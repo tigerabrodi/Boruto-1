@@ -1,13 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
-
-import type { CollectionReference } from 'firebase/firestore'
-import type { ArticleType } from '../../../lib/types'
-
-import { query, orderBy, onSnapshot, collection } from 'firebase/firestore'
+import {
+  query,
+  orderBy,
+  onSnapshot,
+  collection,
+  CollectionReference,
+} from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 
-import { firebaseDb } from '../../../lib/firebase'
-import { Card } from './card'
+import { firebaseDb, ArticleType } from '../../../lib/'
+import { Card } from '.'
 
 export function Cards() {
   const [articles, setArticles] = useState<ArticleType[]>([])
@@ -34,20 +36,23 @@ export function Cards() {
 
   return (
     <div className="flex flex-col justify-center pt-[150px]">
-      {articles.map(({ articleId, uid, text, title, readMin, coverUrl }) => {
-        return (
-          <Card
-            uid={uid}
-            text={text}
-            title={title}
-            key={articleId}
-            readMin={readMin}
-            coverUrl={coverUrl}
-            articleId={articleId}
-            subtitle={''}
-          />
-        )
-      })}
+      {articles.map(
+        ({ articleId, uid, text, title, readMin, coverUrl, timestamp }) => {
+          return (
+            <Card
+              uid={uid}
+              text={text}
+              subtitle={''}
+              title={title}
+              key={articleId}
+              readMin={readMin}
+              coverUrl={coverUrl}
+              articleId={articleId}
+              timestamp={timestamp}
+            />
+          )
+        }
+      )}
     </div>
   )
 }

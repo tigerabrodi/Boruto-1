@@ -7,12 +7,12 @@ import { FiThumbsUp } from 'react-icons/fi'
 import { IoChatbubblesOutline } from 'react-icons/io5'
 
 import { Link } from 'react-router-dom'
-import { firebaseDb } from '../../../lib/firebase'
-import { ArticleType, UserType } from '../../../lib/types'
-import { Author } from './author'
+import { firebaseDb, ArticleType, UserType } from '../../../lib/'
+import { Author } from '.'
 
 type CardProps = ArticleType
 export function Card({
+  timestamp,
   articleId,
   uid,
   text,
@@ -64,9 +64,10 @@ export function Card({
               avatarUrl={info.avatarUrl}
               fullname={info.fullname}
               readMin={readMin}
-              uid={info.uid}
-              PIN={uid}
+              pin={info.pin}
+              uid={uid}
               profileId={info.profileId}
+              timestamp={timestamp}
             />
           )
         })}

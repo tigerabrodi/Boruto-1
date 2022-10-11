@@ -8,12 +8,16 @@ export type ArticleType = {
   readMin: string
   coverUrl: string
   articleId: string
+  timestamp: {
+    seconds: number
+    nanoseconds: number
+  }
 }
 
 export type UserType = {
+  pin: string
   bio: string
   age: string
-  uid: string
   fullname: string
   location: string
   username: string

@@ -1,10 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
-import type { User } from 'firebase/auth'
 
-import { onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, User } from 'firebase/auth'
 import { useContext, createContext, useEffect, useState } from 'react'
 
-import { firebaseAuth } from '../lib/firebase'
+import { firebaseAuth } from '../lib/'
 
 export type AuthContextProviderProps = {
   children: React.ReactNode

@@ -1,10 +1,8 @@
 import { createUserWithEmailAndPassword as createUserWithEmailAndPasswordAuth } from '@firebase/auth'
-import { doc, serverTimestamp } from '@firebase/firestore'
+import { doc, serverTimestamp, setDoc } from '@firebase/firestore'
+import { firebaseAuth, firebaseDb } from '../lib/'
 import { FirebaseError } from 'firebase/app'
-import { setDoc } from 'firebase/firestore'
 import { useState } from 'react'
-
-import { firebaseAuth, firebaseDb } from '../lib/firebase'
 
 export const useCreateUserWithEmailAndPassword = () => {
   const [signUpError, setSignUpError] = useState<FirebaseError | null>(null)

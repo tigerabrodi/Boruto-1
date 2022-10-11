@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { Link } from 'react-router-dom'
-import { getDateWithTimestamp, getTimestamp } from '../../../lib/timestamp'
+import { getDateWithTimestamp, getTimestamp } from '../../../lib'
 import { HiOutlineBookOpen } from 'react-icons/hi'
 
 type AuthorProps = {
@@ -12,7 +12,7 @@ type AuthorProps = {
   profileId: string
   avatarUrl: string
   fullname: string
-  PIN: string
+  pin: string
   uid: string
   readMin: string
 }
@@ -20,14 +20,14 @@ export function Author({
   createdAt,
   avatarUrl,
   fullname,
-  PIN,
+  pin,
   uid,
   profileId,
   readMin,
 }: AuthorProps) {
   return (
     <>
-      {uid === PIN && (
+      {uid === pin && (
         <>
           <img
             src={avatarUrl}

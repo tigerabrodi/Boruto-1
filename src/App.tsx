@@ -1,21 +1,20 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { lazy, Suspense } from 'react'
-import { Header } from './components'
 import { Route, Routes } from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext'
 import { MenuContextProvider } from './context/MenuContext'
 import { Toaster } from 'react-hot-toast'
 import { ToastOptions } from './lib/theme'
-import { LoadingSpinner } from './components/spinner'
+import { Header, LoadingSpinner } from './components'
 
-const Feed = lazy(() => import('./pages/feed/feed'))
-const Signin = lazy(() => import('./pages/signin/signin'))
-const Signup = lazy(() => import('./pages/signup/signup'))
-const CreateProfile = lazy(() => import('./pages/createProfile/CreateProfile'))
-const User = lazy(() => import('./pages/user/user'))
-const CreateArticle = lazy(() => import('./pages/createArticle/CreateArticle'))
-const Article = lazy(() => import('./pages/article/article'))
+const Feed = lazy(() => import('./pages/feed'))
+const Signin = lazy(() => import('./pages/signin'))
+const Signup = lazy(() => import('./pages/signup'))
+const CreateProfile = lazy(() => import('./pages/createProfile'))
+const User = lazy(() => import('./pages/user'))
+const CreateArticle = lazy(() => import('./pages/createArticle'))
+const Article = lazy(() => import('./pages/article'))
 
 export function App() {
   return (

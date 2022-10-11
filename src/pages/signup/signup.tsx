@@ -5,10 +5,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useCreateUserWithEmailAndPassword } from '../../hooks/useCreateUserWithEmailAndPassword'
-import { useFormState } from '../../hooks/useFormState'
-import { firebaseDb } from '../../lib/firebase'
-import { useLoadingStore } from '../../lib/store'
+import { useCreateUserWithEmailAndPassword, useFormState } from '../../hooks/'
+import { firebaseDb, useLoadingStore } from '../../lib/'
 
 export default function Signp() {
   const [isUsernameError, setIsUsernameError] = useState(false)

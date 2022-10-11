@@ -1,8 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { useAuthContext } from '../../context/AuthContext'
-import { firebaseDb } from '../../lib/firebase'
+import { useAuthContext } from '../../context'
+import { firebaseDb } from '../../lib'
 
 import { FiEdit3 } from 'react-icons/fi'
 
