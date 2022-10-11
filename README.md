@@ -14,7 +14,7 @@ Markdown-compatible blog application. More coming soon...
 - And much more...
 ### 🛠️ - Dependencies 
  
- `React` &nbsp; `TypeScript` &nbsp; `Zustand` &nbsp; `Tailwind CSS` &nbsp; `Cypress` &nbsp; `E2E Testing` &nbsp; `Testing Library` &nbsp; `react-hot-toast` &nbsp; `Build tool: Vite` 
+ `React` &nbsp; `TypeScript` &nbsp; `Zustand` &nbsp; `Tailwind` &nbsp; `Cypress` &nbsp; `E2E Testing` &nbsp; `Testing Library` &nbsp; `react-hot-toast` &nbsp; `Build tool: Vite` 
 
 <br> 
 <br> 
