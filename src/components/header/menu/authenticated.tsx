@@ -1,16 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
-
-import { Link, useNavigate } from 'react-router-dom'
-import { FiLogOut, FiUser, FiFeather } from 'react-icons/fi'
-import { useAuthContext } from '../../../context/AuthContext'
-import { firebaseAuth, firebaseDb } from '../../../lib/firebase'
-import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useLoadingStore } from '../../../lib/store'
-import { useMenuContext } from '../../../context/MenuContext'
+import { Link, useNavigate } from 'react-router-dom'
+import { FiLogOut, FiUser, FiFeather } from 'react-icons/fi'
+import { useAuthContext, useMenuContext } from '../../../context'
+import { firebaseAuth, firebaseDb, useLoadingStore } from '../../../lib'
+import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
 
-export default function Authenticated() {
+export function Authenticated() {
   const [isUser, setIsUser] = useState<DocumentData>()
   const { setIsOpen } = useMenuContext()
   const { setStatus } = useLoadingStore()

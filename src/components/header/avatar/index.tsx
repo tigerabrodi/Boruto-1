@@ -1,13 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
-
-import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
 import { useState } from 'react'
-import { useAuthContext } from '../../../context/AuthContext'
-import { useMenuContext } from '../../../context/MenuContext'
-import { firebaseDb } from '../../../lib/firebase'
-
-export const DEFAULT_AVATAR =
-  'https://hashnode.com/_next/image?url=https%3A%2F%2Fcdn.hashnode.com%2Fres%2Fhashnode%2Fimage%2Fupload%2Fv1659089761812%2FfsOct5gl6.png&w=1920&q=75'
+import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
+import { useAuthContext, useMenuContext } from '../../../context'
+import { DEFAULT_AVATAR, firebaseDb } from '../../../lib'
 
 export function Avatar() {
   const [avatar, setAvatar] = useState<DocumentData>()

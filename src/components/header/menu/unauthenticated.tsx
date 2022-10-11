@@ -1,8 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { Link } from 'react-router-dom'
-import { useMenuContext } from '../../../context/MenuContext'
-import { DEFAULT_AVATAR } from '../avatar'
+import { useMenuContext } from '../../../context/'
+import { DEFAULT_AVATAR } from '../../../lib'
 
 export function Unauthenticated() {
   const { setIsOpen } = useMenuContext()

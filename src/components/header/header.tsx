@@ -1,10 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Link } from 'react-router-dom'
-import { useAuthContext } from '../../context/AuthContext'
-import { useMenuContext } from '../../context/MenuContext'
-import { Avatar } from './avatar'
-import Authenticated from './menu/authenticated'
-import { Unauthenticated } from './menu/unauthenticated'
+import { useAuthContext, useMenuContext } from '../../context/'
+import { Avatar, Authenticated, Unauthenticated } from './index'
 
 export function Header() {
   const { isOpen } = useMenuContext()
