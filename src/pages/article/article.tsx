@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 import { firebaseDb, ParamsType, UserType } from '../../lib'
 import { Author } from '.'
 import { Buttons } from './buttons'
-import { CommentsContainer } from './container'
+import { CommentsContainer, Comments } from '../article/index'
 
 /* eslint-disable react/react-in-jsx-scope */
 export default function Article() {
@@ -90,6 +90,7 @@ export default function Article() {
         )}
       </div>
       <CommentsContainer articleId={id} />
+      <Comments articleId={id} />
     </div>
   )
 }
