@@ -5,7 +5,6 @@ import {
   DocumentData,
   onSnapshot,
 } from 'firebase/firestore'
-import { HiOutlineBookOpen } from 'react-icons/hi'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { firebaseDb } from '../../lib/firebase'
@@ -73,14 +72,11 @@ export default function Article() {
                   fullname={info.fullname}
                   PIN={info.uid}
                   uid={isArticle.uid}
+                  createdAt={info.createdAt}
+                  readMin={isArticle.readMin}
                 />
               )
             })}
-
-            <p className="flex items-center text-[18px] text-darkGrey">
-              <HiOutlineBookOpen className="text-[20px] mr-[5px]" />
-              {isArticle.readMin} read min
-            </p>
           </div>
 
           <p className="text-[18px] leading-[2]">{isArticle.text}</p>
