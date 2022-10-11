@@ -89,7 +89,7 @@ export default function Article() {
           </>
         )}
       </div>
-      <CommentsContainer />
+      <CommentsContainer articleId={id} />
     </div>
   )
 }
