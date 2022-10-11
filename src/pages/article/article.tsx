@@ -47,7 +47,7 @@ export default function Article() {
   }, [])
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center pb-[50px]">
       <div className="pt-[150px] pb-[15px] flex justify-center ">
         {isArticle && (
           <>

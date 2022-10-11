@@ -10,6 +10,7 @@ type IconsProps = {
 }
 export function Icons({ articleId }: IconsProps) {
   const [likes, setLikes] = useState<LikeType[]>([])
+  const [comments, setComments] = useState<CommentType[]>([])
 
   const likesCollectionReference = collection(
     firebaseDb,
@@ -25,8 +26,6 @@ export function Icons({ articleId }: IconsProps) {
       unsubscribe()
     }
   }, [])
-
-  const [comments, setComments] = useState<CommentType[]>([])
 
   const commentsCollectionReference = collection(
     firebaseDb,
