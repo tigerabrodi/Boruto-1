@@ -4,3 +4,7 @@ export * from './buttons/CommentButton'
 export * from './buttons/LikeButton'
 export * from './container/container'
 export * from './container/textarea'
+
+export * from './container/index'
+export * from './comments/comments'
+export * from './comments/comment'

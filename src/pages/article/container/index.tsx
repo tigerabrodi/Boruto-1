@@ -9,7 +9,7 @@ export type T = {
 export function CommentsContainer({ articleId }: T) {
   const { user } = useAuthContext()
   return (
-    <div className="mx-auto mb-[100px]">
+    <div className="mx-auto mb-[15px]">
       {user?.uid ? (
         <Textarea articleId={articleId} />
       ) : (
