@@ -15,6 +15,7 @@ const CreateProfile = lazy(() => import('./pages/createProfile'))
 const User = lazy(() => import('./pages/user'))
 const CreateArticle = lazy(() => import('./pages/createArticle'))
 const Article = lazy(() => import('./pages/article'))
+const Profile = lazy(() => import('./pages/profile'))
 
 export function App() {
   return (
@@ -80,6 +81,15 @@ export function App() {
               element={
                 <Suspense fallback={<LoadingSpinner />}>
                   <Article />
+                </Suspense>
+              }
+            />
+
+            <Route
+              path="/profile/:id"
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Profile />
                 </Suspense>
               }
             />

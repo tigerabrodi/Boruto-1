@@ -18,15 +18,15 @@ export default function Article() {
   const [isArticle, setIsArticle] = useState<DocumentData>()
   const { id } = useParams<ParamsType>()
 
-  const avatarDocumentReference = doc(firebaseDb, `articles/${id}`)
+  const articleDocumentRef = doc(firebaseDb, `articles/${id}`)
 
-  const userCollectionReference = collection(
+  const userCollectionRef = collection(
     firebaseDb,
     'users'
   ) as CollectionReference<UserType>
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(avatarDocumentReference, (doc) => {
+    const unsubscribe = onSnapshot(articleDocumentRef, (doc) => {
       setIsArticle(doc.data())
     })
 
@@ -37,7 +37,7 @@ export default function Article() {
 
   useEffect(() => {
     const getProfile = () => {
-      onSnapshot(userCollectionReference, (snapshot) => {
+      onSnapshot(userCollectionRef, (snapshot) => {
         setProfile(
           snapshot.docs.map((doc) => ({ ...doc.data(), profileId: doc.id }))
         )
