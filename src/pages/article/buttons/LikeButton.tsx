@@ -12,15 +12,15 @@ import { useEffect, useState } from 'react'
 import { FiThumbsUp } from 'react-icons/fi'
 import { ButtonsProps } from '.'
 import { useAuthContext } from '../../../context'
-import { firebaseDb, Like } from '../../../lib'
+import { firebaseDb, LikeType } from '../../../lib'
 
 export function LikeButton({ articleId }: ButtonsProps) {
-  const [likes, setLikes] = useState<Like[]>([])
+  const [likes, setLikes] = useState<LikeType[]>([])
   const [hasLiked, setHasLiked] = useState(false)
   const likeCollectionReference = collection(
     firebaseDb,
     `articles/${articleId}/likes/`
-  ) as CollectionReference<Like>
+  ) as CollectionReference<LikeType>
 
   const { user } = useAuthContext()
 

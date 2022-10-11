@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from 'react'
 import { CommentType, firebaseDb } from '../../../lib'
 import { T } from '../container'
-import { Comment } from '../index'
+import { Comment } from '../comments/comment'
 export function Comments({ articleId }: T) {
   const [comments, setComments] = useState<CommentType[]>([])
 
