@@ -37,13 +37,16 @@ export function Author({
             >
               {fullname}
             </Link>
-            <p className="text-darkGrey flex items-center">
-              <HiOutlineBookOpen className="text-[20px] mr-[5px]" />
-              {readMin} read min
-            </p>
-            <p className=" flex items-center text-[18px] text-darkGrey">
-              {getDateWithTimestamp(getTimestamp(timestamp))}
-            </p>
+            <div className="flex items-center">
+              <p className="text-darkGrey flex items-center  ">
+                <HiOutlineBookOpen className="text-[20px] mr-[5px] text-blue" />
+                {readMin} read min
+              </p>
+              <p className="mx-[8px] text-[20px] text-darkGrey ">·</p>
+              <p className=" flex items-center     text-darkGrey">
+                {getDateWithTimestamp(getTimestamp(timestamp))}
+              </p>
+            </div>
           </div>
         </div>
       )}
