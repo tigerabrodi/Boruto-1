@@ -2,12 +2,15 @@
 
 import { LikeButton, CommentButton } from '../index'
 
-export function Buttons() {
+export type ButtonsProps = {
+  articleId: string | undefined
+}
+export function Buttons({ articleId }: ButtonsProps) {
   return (
     <div className="relative ">
       <div className="fixed flex flex-col ml-[30px] mt-[300px]">
-        <LikeButton />
-        <CommentButton />
+        <LikeButton articleId={articleId} />
+        <CommentButton articleId={articleId} />
       </div>
     </div>
   )
