@@ -6,7 +6,7 @@ import { AuthContextProvider } from './context/AuthContext'
 import { MenuContextProvider } from './context/MenuContext'
 import { Toaster } from 'react-hot-toast'
 import { ToastOptions } from './lib/theme'
-import { Header, LoadingSpinner } from './components'
+import { Header, LoadingSpinner, InfoModal } from './components'
 
 const Feed = lazy(() => import('./pages/feed'))
 const Signin = lazy(() => import('./pages/signin'))
@@ -20,6 +20,7 @@ const Profile = lazy(() => import('./pages/profile'))
 export function App() {
   return (
     <div>
+      <InfoModal />
       <Toaster position="top-center" toastOptions={ToastOptions} />
       <LoadingSpinner />
       <AuthContextProvider>
