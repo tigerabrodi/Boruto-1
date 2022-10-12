@@ -19,6 +19,7 @@ const User = lazy(() => import('./pages/user'))
 const CreateArticle = lazy(() => import('./pages/createArticle'))
 const Article = lazy(() => import('./pages/article'))
 const Profile = lazy(() => import('./pages/profile'))
+const EditProfile = lazy(() => import('./pages/EditProfile'))
 
 export function App() {
   return (
@@ -94,6 +95,14 @@ export function App() {
                 element={
                   <Suspense fallback={<LoadingSpinner />}>
                     <Profile />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/profile/edit/:id"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <EditProfile />
                   </Suspense>
                 }
               />

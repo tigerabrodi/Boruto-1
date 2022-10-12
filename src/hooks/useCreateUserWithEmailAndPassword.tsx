@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword as createUserWithEmailAndPasswordAuth } from '@firebase/auth'
-import { doc, serverTimestamp, setDoc } from '@firebase/firestore'
+import { doc, setDoc } from '@firebase/firestore'
 import { firebaseAuth, firebaseDb } from '../lib/'
 import { FirebaseError } from 'firebase/app'
 import { useState } from 'react'
@@ -29,7 +29,6 @@ export const useCreateUserWithEmailAndPassword = () => {
         age: '',
         bio: '',
         avatarUrl: '',
-        createdAt: serverTimestamp(),
         pin: user.user.uid,
       })
 
