@@ -12,10 +12,13 @@ import { InfoModal } from '../../components'
 import { useAuthContext, useInfoContext } from '../../context'
 import { firebaseDb, ParamsType, UserType } from '../../lib'
 import { Author, LikeComment, Comments, CommentsContainer, Buttons } from '.'
+import DeleteArticle from '../../components/modal/DeleteArticle'
 
 export default function Article() {
   const [profile, setProfile] = useState<UserType[]>([])
   const [isArticle, setIsArticle] = useState<DocumentData>()
+  const [openModal, setOpenModal] = useState(false)
+
   const { id } = useParams<ParamsType>()
   const { popup } = useInfoContext()
   const { user } = useAuthContext()
@@ -51,6 +54,9 @@ export default function Article() {
   return (
     <>
       {popup === true ? <InfoModal /> : ''}
+      {openModal === true && (
+        <DeleteArticle articleId={id} setOpenModal={setOpenModal} />
+      )}
       <div className="flex flex-col justify-center pb-[50px]">
         <div className="pt-[150px] pb-[15px] flex justify-center ">
           {isArticle && (
@@ -63,7 +69,9 @@ export default function Article() {
                       backgroundImage: `url(${isArticle.coverUrl})`,
                     }}
                   />
-                  {isArticle.uid === user?.uid && <Buttons articleId={id} />}
+                  {isArticle.uid === user?.uid && (
+                    <Buttons setOpenModal={setOpenModal} articleId={id} />
+                  )}
                 </div>
                 <h1 className="text-[30px] pb-[10px] font-semibold text-center">
                   {isArticle.title}
