@@ -22,11 +22,6 @@ export default function CreateProfile() {
   const [selectedFile, setSelectedFile] = useState<any>(null)
   const [loading, setLoading] = useState(false)
 
-  const [isNameError, setIsNameError] = useState(false)
-  const [isLocationError, setIsLocationError] = useState(false)
-  const [isAgeError, setIsAgeError] = useState(false)
-  const [isBioError, setIsBioError] = useState(false)
-
   const navigate = useNavigate()
   const { setStatus } = useLoadingStore()
 
@@ -40,79 +35,39 @@ export default function CreateProfile() {
     location: '',
   })
 
-  const isAnyFieldEmpty =
-    !name.length || !age.length || !bio.length || !location.length
-
-  const canUserSignUp = () => {
-    const isNameValueEmpty = name.length <= 0
-    if (isNameValueEmpty) {
-      setIsNameError(true)
-      return setTimeout(() => {
-        setIsNameError(false)
-      }, 3000)
-    }
-
-    const isAgeEmpty = name.length <= 0
-    if (isAgeEmpty) {
-      setIsAgeError(true)
-      return setTimeout(() => {
-        setIsAgeError(false)
-      }, 3000)
-    }
-
-    const isLocationEmpty = name.length <= 0
-    if (isLocationEmpty) {
-      setIsLocationError(true)
-      return setTimeout(() => {
-        setIsLocationError(false)
-      }, 3000)
-    }
-
-    const isBioEmpty = name.length <= 0
-    if (isBioEmpty) {
-      setIsBioError(true)
-      return setTimeout(() => {
-        setIsBioError(false)
-      }, 3000)
-    }
-    return true
-  }
-
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
     setStatus('loading')
 
-    if (canUserSignUp() === true) {
-      if (loading) return setLoading(true)
+    if (loading) return setLoading(true)
 
-      const imageReference = ref(
-        firebaseStorage,
-        `avatars/${firebaseAuth.currentUser?.uid}/image`
-      )
+    const imageReference = ref(
+      firebaseStorage,
+      `avatars/${firebaseAuth.currentUser?.uid}/image`
+    )
 
-      await uploadString(imageReference, selectedFile, 'data_url').then(
-        async () => {
-          const downloadURL = await getDownloadURL(imageReference)
+    await uploadString(imageReference, selectedFile, 'data_url').then(
+      async () => {
+        const downloadURL = await getDownloadURL(imageReference)
 
-          await updateDoc(
-            doc(firebaseDb, `users/${firebaseAuth.currentUser?.uid}`),
-            {
-              age: age,
-              bio: bio,
-              location: location,
-              fullname: name,
-              avatarUrl: downloadURL,
-            }
-          )
-        }
-      )
+        await updateDoc(
+          doc(firebaseDb, `users/${firebaseAuth.currentUser?.uid}`),
+          {
+            age: age,
+            bio: bio,
+            location: location,
+            fullname: name,
+            avatarUrl: downloadURL,
+          }
+        )
+      }
+    )
 
-      setLoading(false)
-      setSelectedFile(null)
-      setStatus('success')
-      navigate('/ ')
-      toast.success('Successfully created your account.')
-    }
+    setLoading(false)
+    setSelectedFile(null)
+    setStatus('success')
+    navigate('/ ')
+    toast.success('Successfully created your account.')
   }
 
   const addImageToPost = (e: any) => {
@@ -190,14 +145,8 @@ export default function CreateProfile() {
               id="Full Name"
               onChange={handleChange}
               value={name}
-              aria-invalid={isNameError ? 'true' : 'false'}
               className="border border-border py-[6px] px-[12px] rounded-[30px] w-[250px] "
             />
-            {isNameError && (
-              <p className="mt-[10px] text-red text-center" role="alert">
-                Please enter your full name
-              </p>
-            )}
           </div>
           <div className="flex flex-col  ">
             <label htmlFor="Age" className="mb-[5px] ml-[5px]">
@@ -210,14 +159,8 @@ export default function CreateProfile() {
               id="Age"
               onChange={handleChange}
               value={age}
-              aria-invalid={isAgeError ? 'true' : 'false'}
               className="border border-border py-[6px] px-[12px] rounded-[30px]  w-[100px]  "
             />
-            {isAgeError && (
-              <p className="mt-[10px] text-red text-center" role="alert">
-                Please enter your age
-              </p>
-            )}
           </div>
         </div>
 
@@ -232,14 +175,8 @@ export default function CreateProfile() {
             id="location"
             onChange={handleChange}
             value={location}
-            aria-invalid={isLocationError ? 'true' : 'false'}
             className="border border-border py-[6px] px-[12px] rounded-[30px] "
           />
-          {isLocationError && (
-            <p className="mt-[10px] text-red text-center" role="alert">
-              Please enter your location
-            </p>
-          )}
         </div>
 
         <div className="flex flex-col mt-[30px]">
@@ -253,21 +190,14 @@ export default function CreateProfile() {
             aria-label="Biography"
             onChange={handleChange}
             value={bio}
-            aria-invalid={isBioError ? 'true' : 'false'}
             className="border border-border py-[10px] px-[20px] rounded-[30px] w-[380px] h-[150px]"
           />
-          {isBioError && (
-            <p className="mt-[10px] text-red text-center" role="alert">
-              Please enter about yourself
-            </p>
-          )}
         </div>
         <button
           type="submit"
           aria-label="Done"
           tabIndex={0}
           className=" cursor-pointer w-[100%]	 transition ease-in-out duration-200 mt-[40px]   py-[10px] px-[30px] bg-blue rounded-[30px] text-white hover:bg-hoverFilled"
-          disabled={isAnyFieldEmpty || selectedFile == null}
           onClick={handleSubmit}
         >
           {loading ? 'Done...' : 'Done'}
