@@ -19,21 +19,16 @@ export function Comments({ articleId }: T) {
     `articles/${articleId}/comments`
   ) as CollectionReference<CommentType>
 
-  useEffect(() => {
-    const getComments = async () =>
+  useEffect(
+    () =>
       onSnapshot(
         query(commentsCollectionReference, orderBy('timestamp', 'desc')),
-        (snapshot) => {
-          return setComments(
-            snapshot.docs.map((doc) => ({ ...doc.data(), commentId: doc.id }))
-          )
-        }
-      )
+        (snapshot) =>
+          setComments(snapshot.docs.map((doc) => ({ ...doc.data() })))
+      ),
+    [firebaseDb, articleId]
+  )
 
-    return () => {
-      getComments()
-    }
-  }, [firebaseDb, articleId])
   return (
     <div>
       {comments.map(({ comment, commentUid, commentId, timestamp }) => {
