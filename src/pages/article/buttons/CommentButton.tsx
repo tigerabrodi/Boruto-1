@@ -13,18 +13,14 @@ export function CommentButton({ articleId }: ButtonsProps) {
     `articles/${articleId}/comments`
   ) as CollectionReference<CommentType>
 
-  useEffect(() => {
-    const getComments = async () =>
-      onSnapshot(commentsCollectionReference, (snapshot) => {
-        return setComments(
-          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        )
-      })
+  useEffect(
+    () =>
+      onSnapshot(commentsCollectionReference, (snapshot) =>
+        setComments(snapshot.docs.map((doc) => ({ ...doc.data() })))
+      ),
+    [firebaseDb, articleId]
+  )
 
-    return () => {
-      getComments()
-    }
-  }, [firebaseDb, articleId])
   return (
     <p className="text-[32px]  text-darkGrey  text-darkGrey mb-[50px] flex items-center">
       <IoChatbubblesOutline />
