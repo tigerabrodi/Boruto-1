@@ -2,10 +2,10 @@
 import { collection, CollectionReference, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { IoChatbubblesOutline } from 'react-icons/io5'
-import { ButtonsProps } from '.'
+import { LikeCommentProps } from '.'
 import { CommentType, firebaseDb } from '../../../lib'
 
-export function CommentButton({ articleId }: ButtonsProps) {
+export function CommentButton({ articleId }: LikeCommentProps) {
   const [comments, setComments] = useState<CommentType[]>([])
 
   const commentsCollectionReference = collection(

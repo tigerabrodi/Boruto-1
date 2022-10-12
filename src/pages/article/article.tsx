@@ -7,12 +7,10 @@ import {
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { firebaseDb, ParamsType, UserType } from '../../lib'
-import { Author } from '.'
-import { Buttons } from './buttons'
-import { CommentsContainer, Comments } from '../article/index'
 import { InfoModal } from '../../components'
 import { useInfoContext } from '../../context'
+import { firebaseDb, ParamsType, UserType } from '../../lib'
+import { Author, LikeComment, Comments, CommentsContainer } from '.'
 
 /* eslint-disable react/react-in-jsx-scope */
 export default function Article() {
@@ -90,7 +88,7 @@ export default function Article() {
                 <p className="text-[18px] leading-[2]">{isArticle.text}</p>
               </div>
 
-              <Buttons articleId={id} />
+              <LikeComment articleId={id} />
             </>
           )}
         </div>
