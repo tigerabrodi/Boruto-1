@@ -16,12 +16,12 @@ export default function DeleteArticle({
 
   const deleteArticle = async () => {
     setStatus('loading')
+    navigate('/profile')
     const articleDoc = doc(firebaseDb, `articles/${articleId}`)
     await deleteDoc(articleDoc)
     setStatus('success')
     toast.success('Successfully deleted your article.')
     setOpenModal(false)
-    navigate('/profile')
   }
 
   return (
