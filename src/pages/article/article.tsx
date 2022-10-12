@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import {
   collection,
   CollectionReference,
@@ -8,16 +9,16 @@ import {
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { InfoModal } from '../../components'
-import { useInfoContext } from '../../context'
+import { useAuthContext, useInfoContext } from '../../context'
 import { firebaseDb, ParamsType, UserType } from '../../lib'
-import { Author, LikeComment, Comments, CommentsContainer } from '.'
+import { Author, LikeComment, Comments, CommentsContainer, Buttons } from '.'
 
-/* eslint-disable react/react-in-jsx-scope */
 export default function Article() {
   const [profile, setProfile] = useState<UserType[]>([])
   const [isArticle, setIsArticle] = useState<DocumentData>()
   const { id } = useParams<ParamsType>()
   const { popup } = useInfoContext()
+  const { user } = useAuthContext()
 
   const articleDocumentRef = doc(firebaseDb, `articles/${id}`)
 
@@ -55,12 +56,15 @@ export default function Article() {
           {isArticle && (
             <>
               <div className="bg-white p-[30px] w-[800px]  border border-border rounded-[8px] ">
-                <div
-                  className="w-[100%] h-[400px] mx-auto mb-[30px] rounded-[4px] relative bg-no-repeat bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${isArticle.coverUrl})`,
-                  }}
-                />
+                <div className="relative">
+                  <div
+                    className="w-[100%] h-[400px] mx-auto mb-[30px] rounded-[4px] relative bg-no-repeat bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url(${isArticle.coverUrl})`,
+                    }}
+                  />
+                  {isArticle.uid === user?.uid && <Buttons articleId={id} />}
+                </div>
                 <h1 className="text-[30px] pb-[10px] font-semibold text-center">
                   {isArticle.title}
                 </h1>
