@@ -62,7 +62,7 @@ export function LikeButton({ articleId }: LikeCommentProps) {
         <>
           {hasLiked ? (
             <button
-              aria-label="like button"
+              aria-label="Like article"
               onClick={likeArticle}
               className="text-[26px] text-blue mb-[50px] flex items-center"
             >
@@ -75,7 +75,7 @@ export function LikeButton({ articleId }: LikeCommentProps) {
             </button>
           ) : (
             <button
-              aria-label="like button"
+              aria-label="Like article"
               onClick={likeArticle}
               className="text-[26px] text-darkGrey mb-[50px] flex items-center"
             >

@@ -46,6 +46,7 @@ export function Card({
         }}
       />
       <Link
+        aria-label="Go to article"
         to={`/article/${articleId}`}
         className="text-[30px] font-semibold text-dark hover:underline"
       >

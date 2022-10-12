@@ -76,7 +76,9 @@ export function Textarea({ articleId }: T) {
           </div>
         </div>
       )}
-      <label htmlFor="Comment"></label>
+      <label htmlFor="Comment" className="opacity-0 absolute">
+        Comment
+      </label>
       <textarea
         name="Comment"
         id="Comment"
