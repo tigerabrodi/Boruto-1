@@ -6,11 +6,10 @@ import {
   AuthContextProvider,
   MenuContextProvider,
   InfoContextProvider,
-  useInfoContext,
 } from './context'
 import { Toaster } from 'react-hot-toast'
 import { ToastOptions } from './lib/theme'
-import { Header, LoadingSpinner, InfoModal } from './components'
+import { Header, LoadingSpinner } from './components'
 
 const Feed = lazy(() => import('./pages/feed'))
 const Signin = lazy(() => import('./pages/signin'))
@@ -22,12 +21,9 @@ const Article = lazy(() => import('./pages/article'))
 const Profile = lazy(() => import('./pages/profile'))
 
 export function App() {
-  const { popup } = useInfoContext()
   return (
     <div>
       <InfoContextProvider>
-        {popup === true && <InfoModal />}
-
         <Toaster position="top-center" toastOptions={ToastOptions} />
         <LoadingSpinner />
         <AuthContextProvider>
