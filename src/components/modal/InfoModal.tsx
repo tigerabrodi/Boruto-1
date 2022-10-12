@@ -46,6 +46,7 @@ export function InfoModal() {
                 </div>{' '}
                 <button
                   className="absolute top-[10px] right-[15px] text-[20px    ]"
+                  onClick={() => setPopup(false)}
                   aria-label="close Modal"
                 >
                   <FiX />
