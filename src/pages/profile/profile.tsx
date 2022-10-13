@@ -1,23 +1,29 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
+import { doc, DocumentReference, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { FiEdit3 } from 'react-icons/fi'
 import { Link, useParams } from 'react-router-dom'
 import { useAuthContext } from '../../context'
-import { firebaseDb, ParamsType } from '../../lib'
+import { firebaseDb, ParamsType, UserType } from '../../lib'
 import { Articles } from './index'
 
 export default function Profile() {
   const { user } = useAuthContext()
-  const [profile, setProfile] = useState<DocumentData>()
+  const [profile, setProfile] = useState<UserType | null>(null)
   const { id } = useParams<ParamsType>()
 
-  const usersDocumentReference = doc(firebaseDb, `users/${id}`)
+  const usersDocumentRef = doc(
+    firebaseDb,
+    `users/${id}`
+  ) as DocumentReference<UserType>
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(usersDocumentReference, (doc) => {
-      setProfile(doc.data())
+    const unsubscribe = onSnapshot(usersDocumentRef, (doc) => {
+      const docData = doc.data()
+      if (docData) {
+        setProfile(docData)
+      }
     })
 
     return () => {

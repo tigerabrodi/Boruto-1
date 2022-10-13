@@ -3,42 +3,48 @@ import {
   collection,
   CollectionReference,
   doc,
-  DocumentData,
+  DocumentReference,
   onSnapshot,
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { InfoModal } from '../../components'
 import { useAuthContext, useInfoContext } from '../../context'
-import { firebaseDb, ParamsType, UserType } from '../../lib'
+import { ArticleType, firebaseDb, ParamsType, UserType } from '../../lib'
 import { Author, LikeComment, Comments, CommentsContainer, Buttons } from '.'
 import DeleteArticle from '../../components/modal/DeleteArticle'
 
 export default function Article() {
   const [profile, setProfile] = useState<UserType[]>([])
-  const [isArticle, setIsArticle] = useState<DocumentData>()
+  const [isArticle, setIsArticle] = useState<ArticleType | null>(null)
   const [openModal, setOpenModal] = useState(false)
 
   const { id } = useParams<ParamsType>()
   const { popup } = useInfoContext()
   const { user } = useAuthContext()
 
-  const articleDocumentRef = doc(firebaseDb, `articles/${id}`)
-
-  const userCollectionRef = collection(
+  const articleDocumentRef = doc(
     firebaseDb,
-    'users'
-  ) as CollectionReference<UserType>
+    `articles/${id}`
+  ) as DocumentReference<ArticleType>
 
   useEffect(() => {
     const unsubscribe = onSnapshot(articleDocumentRef, (doc) => {
-      setIsArticle(doc.data())
+      const docData = doc.data()
+      if (docData) {
+        setIsArticle(docData)
+      }
     })
 
     return () => {
       unsubscribe()
     }
   }, [])
+
+  const userCollectionRef = collection(
+    firebaseDb,
+    'users'
+  ) as CollectionReference<UserType>
 
   useEffect(() => {
     const getProfile = () => {
