@@ -39,6 +39,15 @@ textarea {
   outline: none;
 }
 
+.article-preview {
+  line-height: 2;
+  font-size: calc(18 / 16 * 1rem);
+  color: #0f172a;
+  font-weight: 400;
+  padding: 15px 30px;
+  word-wrap: break-word;
+  background-color: var(--white);
+}
 .preview {
   line-height: 2;
   height: 300px;
@@ -51,43 +60,64 @@ textarea {
   background-color: var(--white);
 }
 
-.preview h1 {
+.preview h1,
+.article-preview h1 {
   font-weight: 600;
   font-size: calc(24 / 16 * 1rem);
 }
 
-.preview h2 {
+.preview h2,
+.article-preview h2 {
   font-weight: 600;
   font-size: calc(22 / 16 * 1rem);
 }
 
-.preview h3 {
+.preview h3,
+.article-preview h3 {
   font-weight: 500;
 
   font-size: calc(18 / 16 * 1rem);
 }
 
-.preview h4 {
+.preview h4,
+.article-preview h4 {
   font-weight: 500;
 
   font-size: calc(16 / 16 * 1rem);
 }
 
-.preview h5 {
+.preview h5,
+.article-preview h5 {
   font-weight: 500;
 
   font-size: calc(14 / 16 * 1rem);
 }
 
-.preview h6 {
+.preview h6,
+.article-preview h6 {
   font-weight: 500;
 
   font-size: calc(12 / 16 * 1rem);
 }
 
-.preview ul {
+.preview ul,
+.article-preview ul {
+  list-style-type: disc;
+
   padding-left: 40px;
   line-height: 1.5;
+}
+
+.preview * a,
+.article-preview * a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.preview * a:hover,
+.article-preview * a:hover {
+  color: #7799ff;
+  text-decoration: underline;
 }
 
 .SyntaxHighlighter {
@@ -95,19 +125,4 @@ textarea {
   line-height: 1.5;
   font-size: calc(14 / 16 * 1rem);
   border-radius: 4px;
-}
-
-.preview ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.preview * a {
-  color: var(--blue);
-  text-decoration: underline;
-}
-
-.preview * a:hover {
-  color: #7799ff;
-  text-decoration: underline;
 }

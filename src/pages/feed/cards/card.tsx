@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/react-in-jsx-scope */
 
@@ -8,6 +9,9 @@ import { Link } from 'react-router-dom'
 import { firebaseDb, ArticleType, UserType } from '../../../lib/'
 import { Author } from '.'
 import { Icons } from './icons'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 type CardProps = ArticleType
 export function Card({
@@ -53,8 +57,13 @@ export function Card({
         {title}
       </Link>
       <br /> <br />
-      <Link to={`/article/${articleId}`} className="text-darkGrey">
-        {text.substr(0, 185) + '...'}
+      <Link to={`/article/${articleId}`}>
+        <ReactMarkdown
+          children={text.substr(0, 185) + '...'}
+          className="text-darkGrey"
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+        />
       </Link>
       <div className="flex justify-between items-baseline mt-[30px]">
         {profile.map((info) => {

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable react/react-in-jsx-scope */
 import {
   collection,
@@ -13,6 +14,9 @@ import { useAuthContext, useInfoContext } from '../../context'
 import { ArticleType, firebaseDb, ParamsType, UserType } from '../../lib'
 import { Author, LikeComment, Comments, CommentsContainer, Buttons } from '.'
 import DeleteArticle from '../../components/modal/DeleteArticle'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 export default function Article() {
   const [profile, setProfile] = useState<UserType[]>([])
@@ -103,7 +107,31 @@ export default function Article() {
                   })}
                 </div>
 
-                <p className="text-[18px] leading-[2]">{isArticle.text}</p>
+                <ReactMarkdown
+                  children={isArticle.text}
+                  className="article-preview"
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                  //   components={{
+                  //     code({ node, inline, className, children, ...props }) {
+                  //       const match = /language-(\w+)/.exec(className || '')
+                  //       return !inline && match ? (
+                  //         <SyntaxHighlighter
+                  //           // style={dracula}
+                  //           className="SyntaxHighlighter"
+                  //           children={String(children).replace(/\n$/, '')}
+                  //           language={match[1]}
+                  //           PreTag="div"
+                  //           {...props}
+                  //         />
+                  //       ) : (
+                  //         <code className={className} {...props}>
+                  //           {children}
+                  //         </code>
+                  //       )
+                  //     },
+                  //   }}
+                />
               </div>
 
               <LikeComment articleId={id} />
