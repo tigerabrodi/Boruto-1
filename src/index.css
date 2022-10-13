@@ -6,24 +6,27 @@ body {
   background-color: #fafbff;
 }
 
-:-webkit-scrollbar {
+*::-webkit-scrollbar {
   margin-right: 30px;
   background-color: rgb(225, 225, 225);
   width: 6px;
 }
-::-webkit-scrollbar-track {
+
+*::-webkit-scrollbar-track {
   background-color: transparent;
 }
-::-webkit-scrollbar-thumb {
-  background-color: var(--text-dark-theme);
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a3a3a3;
   border-radius: 16px;
   border: none;
 }
-::-webkit-scrollbar-button {
+
+*::-webkit-scrollbar-button {
   display: none;
 }
 
-::-webkit-scrollbar:horizontal {
+*::-webkit-scrollbar:horizontal {
   height: 5px;
 }
 
@@ -34,4 +37,77 @@ input[type='number']::-webkit-inner-spin-button {
 input,
 textarea {
   outline: none;
+}
+
+.preview {
+  line-height: 2;
+  height: 300px;
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 400;
+  padding: 15px 30px;
+  overflow-y: scroll;
+  word-wrap: break-word;
+  background-color: var(--white);
+}
+
+.preview h1 {
+  font-weight: 600;
+  font-size: calc(24 / 16 * 1rem);
+}
+
+.preview h2 {
+  font-weight: 600;
+  font-size: calc(22 / 16 * 1rem);
+}
+
+.preview h3 {
+  font-weight: 500;
+
+  font-size: calc(18 / 16 * 1rem);
+}
+
+.preview h4 {
+  font-weight: 500;
+
+  font-size: calc(16 / 16 * 1rem);
+}
+
+.preview h5 {
+  font-weight: 500;
+
+  font-size: calc(14 / 16 * 1rem);
+}
+
+.preview h6 {
+  font-weight: 500;
+
+  font-size: calc(12 / 16 * 1rem);
+}
+
+.preview ul {
+  padding-left: 40px;
+  line-height: 1.5;
+}
+
+.SyntaxHighlighter {
+  padding-inline-start: 30px;
+  line-height: 1.5;
+  font-size: calc(14 / 16 * 1rem);
+  border-radius: 4px;
+}
+
+.preview ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.preview * a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.preview * a:hover {
+  color: #7799ff;
+  text-decoration: underline;
 }
