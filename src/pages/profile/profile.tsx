@@ -18,18 +18,17 @@ export default function Profile() {
     `users/${id}`
   ) as DocumentReference<UserType>
 
-  useEffect(() => {
-    const unsubscribe = onSnapshot(usersDocumentRef, (doc) => {
-      const docData = doc.data()
-      if (docData) {
-        setProfile(docData)
-      }
-    })
+  useEffect(
+    () =>
+      onSnapshot(usersDocumentRef, (doc) => {
+        const docData = doc.data()
+        if (docData) {
+          setProfile(docData)
+        }
+      }),
 
-    return () => {
-      unsubscribe()
-    }
-  }, [])
+    []
+  )
 
   return (
     <div className="flex flex-col justify-center pt-[120px]">

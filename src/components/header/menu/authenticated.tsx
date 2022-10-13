@@ -1,24 +1,40 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import { FiLogOut, FiUser, FiFeather } from 'react-icons/fi'
 import { useAuthContext, useMenuContext } from '../../../context'
-import { firebaseAuth, firebaseDb, useLoadingStore } from '../../../lib'
-import { doc, DocumentData, onSnapshot } from 'firebase/firestore'
+import {
+  firebaseAuth,
+  firebaseDb,
+  useLoadingStore,
+  UserType,
+} from '../../../lib'
+import { doc, DocumentReference, onSnapshot } from 'firebase/firestore'
 
 export function Authenticated() {
-  const [isUser, setIsUser] = useState<DocumentData>()
+  const [isUser, setIsUser] = useState<UserType | null>(null)
   const { setIsOpen } = useMenuContext()
   const { setStatus } = useLoadingStore()
   const { user } = useAuthContext()
   const navigate = useNavigate()
 
-  const avatarDocumentReference = doc(firebaseDb, `users/${user?.uid}`)
+  const avatarDocumentRef = doc(
+    firebaseDb,
+    `users/${user?.uid}`
+  ) as DocumentReference<UserType>
 
-  onSnapshot(avatarDocumentReference, (doc) => {
-    setIsUser(doc.data())
-  })
+  useEffect(
+    () =>
+      onSnapshot(avatarDocumentRef, (doc) => {
+        const docData = doc.data()
+        if (docData) {
+          setIsUser(docData)
+        }
+      }),
+
+    [user?.uid]
+  )
 
   const handleLogOut = async () => {
     setIsOpen(false)
@@ -51,7 +67,7 @@ export function Authenticated() {
           <Link
             onClick={() => setIsOpen(false)}
             className="transition ease-in-out duration-200 flex align-center text-[18px] px-[30px] py-[20px] hover:bg-border"
-            to="/profile"
+            to={`/profile/${user?.uid}`}
           >
             <FiUser className="text-[23px] mr-[10px] self-center" /> My Profile
           </Link>
