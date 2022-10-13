@@ -19,6 +19,7 @@ import { IoImageOutline } from 'react-icons/io5'
 
 import { useAuthContext } from '../../context/'
 import { firebaseDb, firebaseStorage, useLoadingStore } from '../../lib/'
+import { Preview } from './preview'
 // import { Preview } from './preview/preview'
 
 export default function CreateArticle() {
@@ -200,7 +201,7 @@ export default function CreateArticle() {
             id="Article text"
             placeholder="Tell your story..."
             onChange={(event) => setTextField(event.target.value)}
-            className="h-[250px] font-[400] text-darkGrey px-[30px] py-[15px] break-words leading-[1.5]  resize-none"
+            className="h-[250px] font-[400] text-darkGrey px-[30px] py-[15px] break-words leading-[2]  resize-none"
           />
           <div className="p-[1px] border-t border-border"></div>
           {textField === '' ? (
@@ -208,8 +209,7 @@ export default function CreateArticle() {
               Nothing to preview! 🌵
             </div>
           ) : (
-            ''
-            // <Preview textField={textField}   />
+            <Preview textField={textField} />
           )}
         </div>
       </div>
