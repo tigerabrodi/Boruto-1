@@ -12,7 +12,10 @@
     "cy:open": "cypress open"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@faker-js/faker": "^7.5.0",
+    "@mui/material": "^5.10.9",
     "all-of-just": "^0.18.0",
     "firebase": "^9.11.0",
     "prettier": "^2.7.1",
