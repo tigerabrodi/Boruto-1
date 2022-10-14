@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { InfoModal } from '../../components'
-import { useAuthContext, useInfoContext } from '../../context'
+import { useAuthContext } from '../../context'
 import { ArticleType, firebaseDb, ParamsType, UserType } from '../../lib'
 import { Author, LikeComment, Comments, CommentsContainer, Buttons } from '.'
 import DeleteArticle from '../../components/modal/DeleteArticle'
