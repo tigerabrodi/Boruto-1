@@ -40,7 +40,7 @@ export default function Article({
             />
             <Link
               to={`/article/${articleId}`}
-              className="text-[20px]  font-semibold"
+              className="text-[20px]  font-semibold hover:underline"
             >
               {title}
             </Link>

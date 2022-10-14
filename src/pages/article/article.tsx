@@ -65,7 +65,11 @@ export default function Article() {
     <>
       {popup === true ? <InfoModal /> : ''}
       {openModal === true && (
-        <DeleteArticle articleId={id} setOpenModal={setOpenModal} />
+        <DeleteArticle
+          articleId={id}
+          setOpenModal={setOpenModal}
+          openModal={openModal}
+        />
       )}
       <div className="flex flex-col justify-center pb-[50px]">
         <div className="pt-[150px] pb-[15px] flex justify-center ">
