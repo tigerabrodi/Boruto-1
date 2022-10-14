@@ -37,7 +37,7 @@ export function Author({
 
           <Link
             className=" text-[18px]  hover:underline"
-            to={`/profile/${profileId}`}
+            to={`/profiles/${profileId}`}
           >
             {fullname}
           </Link>

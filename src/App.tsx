@@ -50,7 +50,7 @@ export function App() {
               }
             />
             <Route
-              path="/create/profile"
+              path="/profiles/create"
               element={
                 <Suspense fallback={<LazySpinner />}>
                   <CreateProfile />
@@ -59,7 +59,7 @@ export function App() {
             />
 
             <Route
-              path="/article/create"
+              path="/articles/create"
               element={
                 <Suspense fallback={<LazySpinner />}>
                   <CreateArticle />
@@ -68,7 +68,7 @@ export function App() {
             />
 
             <Route
-              path="/article/:id"
+              path="/articles/:id"
               element={
                 <Suspense fallback={<LazySpinner />}>
                   <Article />
@@ -77,7 +77,7 @@ export function App() {
             />
 
             <Route
-              path="/profile/:id"
+              path="/profiles/:id"
               element={
                 <Suspense fallback={<LazySpinner />}>
                   <Profile />
@@ -85,7 +85,7 @@ export function App() {
               }
             />
             <Route
-              path="/profile/edit/:id"
+              path="/profiles/edit/:id"
               element={
                 <Suspense fallback={<LazySpinner />}>
                   <EditProfile />

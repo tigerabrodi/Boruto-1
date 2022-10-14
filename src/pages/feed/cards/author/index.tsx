@@ -32,7 +32,7 @@ export function Author({
           <img src={avatarUrl} alt="" className="w-[55px] rounded-[50%]" />
           <div className="ml-[10px]">
             <Link
-              to={`/profile/${profileId}`}
+              to={`/profiles/${profileId}`}
               className="font-semibold mb-[3px] hover:underline"
             >
               {fullname}

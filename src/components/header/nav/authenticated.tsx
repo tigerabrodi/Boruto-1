@@ -91,7 +91,7 @@ export function Authenticated() {
               </div>{' '}
             </div>
             <Link
-              to={`/profile/${user?.uid}`}
+              to={`/profiles/${user?.uid}`}
               onClick={handleClose}
               className="w-[250px] transition ease-in-out duration-200 flex align-center text-[18px] px-[30px] py-[20px] hover:bg-border"
             >
@@ -99,7 +99,7 @@ export function Authenticated() {
               My Profile
             </Link>
             <Link
-              to="/article/create"
+              to="/articles/create"
               aria-label="New article"
               onClick={handleClose}
               className="transition ease-in-out duration-200 flex align-center text-[18px] px-[30px] py-[20px] hover:bg-border border-b border-border"

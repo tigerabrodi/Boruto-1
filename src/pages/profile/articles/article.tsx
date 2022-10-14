@@ -39,7 +39,7 @@ export default function Article({
               }}
             />
             <Link
-              to={`/article/${articleId}`}
+              to={`/articles/${articleId}`}
               className="text-[20px]  font-semibold hover:underline"
             >
               {title}

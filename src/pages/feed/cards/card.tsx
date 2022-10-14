@@ -51,13 +51,13 @@ export function Card({
       />
       <Link
         aria-label={title}
-        to={`/article/${articleId}`}
+        to={`/articles/${articleId}`}
         className="text-[30px] font-semibold text-dark hover:underline"
       >
         {title}
       </Link>
       <br /> <br />
-      <Link to={`/article/${articleId}`}>
+      <Link to={`/articles/${articleId}`}>
         <ReactMarkdown
           children={text.substr(0, 185) + '...'}
           className="text-darkGrey"
