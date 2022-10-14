@@ -50,7 +50,7 @@ export function Card({
         }}
       />
       <Link
-        aria-label="Go to article"
+        aria-label={title}
         to={`/article/${articleId}`}
         className="text-[30px] font-semibold text-dark hover:underline"
       >

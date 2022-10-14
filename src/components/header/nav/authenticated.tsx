@@ -60,17 +60,17 @@ export function Authenticated() {
       {isUser && (
         <>
           <button
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
+            aria-controls={open ? 'authenticated nav menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            aria-label="authenticated nav menu"
+            aria-label="authenticated nav menu button"
             onClick={handleClick}
           >
             <img src={isUser.avatarUrl} alt="" className="w-14 rounded-[50%]" />
           </button>
           <Menu
-            id="basic-menu"
+            id="authenticated nav menu"
+            aria-label='"authenticated nav menu"'
             anchorEl={anchorElement}
             open={open}
             onClose={handleClose}
@@ -100,6 +100,7 @@ export function Authenticated() {
             </Link>
             <Link
               to="/article/create"
+              aria-label="New article"
               onClick={handleClose}
               className="transition ease-in-out duration-200 flex align-center text-[18px] px-[30px] py-[20px] hover:bg-border border-b border-border"
             >
