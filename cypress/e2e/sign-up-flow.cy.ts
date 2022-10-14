@@ -16,18 +16,9 @@ it('Sign up and create an account', () => {
   cy.visit('/')
 
   cy.findByRole('link', { name: 'Home' }).should('be.visible')
-  cy.findByRole('button', { name: 'unauthenticated nav menu' }).should(
-    'be.visible'
-  )
-
-  // Authenticated navigation actions are not visible
-  cy.findByRole('button', { name: 'authenticated nav menu' }).should(
-    'not.exist'
-  )
 
   // Redirects to sign up page
-  cy.findByRole('button', { name: 'unauthenticated nav menu' }).click()
-  cy.findByRole('nav', { name: 'unauthenticated menu' }).should('be.visible')
+  cy.findByRole('button', { name: 'unauthenticated nav menu button' }).click()
   cy.findByRole('link', { name: 'Sign up' }).click()
 
   // User signs up

@@ -18,8 +18,8 @@ export function Unauthenticated() {
   return (
     <div>
       <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-meu' : undefined}
+        aria-label="unauthenticated nav menu button"
+        aria-controls={open ? 'unauthenticated nav menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
@@ -27,7 +27,8 @@ export function Unauthenticated() {
         <img src={DEFAULT_AVATAR} alt="" className="w-12" />
       </Button>
       <Menu
-        id="basic-menu"
+        id="unauthenticated nav menu"
+        aria-label='"unauthenticated nav menu"'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
