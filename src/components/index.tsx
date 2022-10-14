@@ -1,3 +1,4 @@
 export { Header } from './header/header'
-export { LoadingSpinner } from './spinner/index'
+export { LoadingSpinner } from './spinner/LoadingSpinner'
+export { LazySpinner } from './spinner/LazySpinner'
 export { InfoModal } from './modal/InfoModal'

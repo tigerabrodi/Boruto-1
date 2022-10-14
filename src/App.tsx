@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import { AuthContextProvider, InfoContextProvider } from './context'
 import { Toaster } from 'react-hot-toast'
 import { ToastOptions } from './lib/theme'
-import { Header, LoadingSpinner } from './components'
+import { Header, LoadingSpinner, LazySpinner } from './components'
 
 const Feed = lazy(() => import('./pages/feed'))
 const Signin = lazy(() => import('./pages/signin'))
@@ -28,7 +28,7 @@ export function App() {
             <Route
               path="/"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <Feed />
                 </Suspense>
               }
@@ -36,7 +36,7 @@ export function App() {
             <Route
               path="/signin"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <Signin />
                 </Suspense>
               }
@@ -44,7 +44,7 @@ export function App() {
             <Route
               path="/signup"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <Signup />
                 </Suspense>
               }
@@ -52,7 +52,7 @@ export function App() {
             <Route
               path="/create/profile"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <CreateProfile />
                 </Suspense>
               }
@@ -61,7 +61,7 @@ export function App() {
             <Route
               path="/article/create"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <CreateArticle />
                 </Suspense>
               }
@@ -70,7 +70,7 @@ export function App() {
             <Route
               path="/article/:id"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <Article />
                 </Suspense>
               }
@@ -79,7 +79,7 @@ export function App() {
             <Route
               path="/profile/:id"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <Profile />
                 </Suspense>
               }
@@ -87,7 +87,7 @@ export function App() {
             <Route
               path="/profile/edit/:id"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LazySpinner />}>
                   <EditProfile />
                 </Suspense>
               }
