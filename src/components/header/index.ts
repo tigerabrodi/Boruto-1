@@ -1,4 +1,3 @@
 export * from './header'
-export * from './avatar/index'
-export * from './menu/authenticated'
-export * from './menu/unauthenticated'
+export * from './nav/authenticated'
+export * from './nav/unauthenticated'

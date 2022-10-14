@@ -1,10 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Link } from 'react-router-dom'
-import { useAuthContext, useMenuContext } from '../../context/'
-import { Avatar, Authenticated, Unauthenticated } from './index'
+import { useAuthContext } from '../../context/'
+import { Authenticated, Unauthenticated } from './index'
 
 export function Header() {
-  const { isOpen } = useMenuContext()
   const { user } = useAuthContext()
 
   return (
@@ -17,11 +16,7 @@ export function Header() {
         Boruto
       </Link>
 
-      <aside className="relative">
-        <Avatar />
-      </aside>
-
-      {isOpen && <>{user?.uid ? <Authenticated /> : <Unauthenticated />}</>}
+      {user?.uid ? <Authenticated /> : <Unauthenticated />}
     </header>
   )
 }
