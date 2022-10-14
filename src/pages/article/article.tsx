@@ -24,7 +24,6 @@ export default function Article() {
   const [openModal, setOpenModal] = useState(false)
 
   const { id } = useParams<ParamsType>()
-  const { popup } = useInfoContext()
   const { user } = useAuthContext()
 
   const articleDocumentRef = doc(
@@ -63,7 +62,7 @@ export default function Article() {
 
   return (
     <>
-      {popup === true ? <InfoModal /> : ''}
+      {!user?.uid && <InfoModal />}
       {openModal === true && (
         <DeleteArticle
           articleId={id}
