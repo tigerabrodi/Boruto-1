@@ -1,15 +1,8 @@
 it('Should sign user out', () => {
   cy.visit('/')
 
-  // Unauthenticated navigation actions are not visible
-  cy.findByRole('button', { name: 'unauthenticated nav menu' }).should(
-    'not.exist'
-  )
-
   // User signs out
-  cy.findByRole('button', { name: 'authenticated nav menu' })
-    .should('be.visible')
-    .click()
+  cy.findByRole('button', { name: 'authenticated nav menu button' }).click()
 
   cy.findByRole('link', { name: 'Sign Out' }).click()
 
