@@ -17,25 +17,27 @@ export function Preview({ textField }: PreviewProps) {
       className="preview"
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
-      //   components={{
-      //     code({ node, inline, className, children, ...props }) {
-      //       const match = /language-(\w+)/.exec(className || '')
-      //       return !inline && match ? (
-      //         <SyntaxHighlighter
-      //           // style={dracula}
-      //           className="SyntaxHighlighter"
-      //           children={String(children).replace(/\n$/, '')}
-      //           language={match[1]}
-      //           PreTag="div"
-      //           {...props}
-      //         />
-      //       ) : (
-      //         <code className={className} {...props}>
-      //           {children}
-      //         </code>
-      //       )
-      //     },
-      //   }}
+      components={
+        {
+          // code({ node, inline, className, children, ...props }) {
+          //   const match = /language-(\w+)/.exec(className || '')
+          //   return !inline && match ? (
+          //     <SyntaxHighlighter
+          //       style={oneDark}
+          //       className="SyntaxHighlighter"
+          //       children={String(children).replace(/\n$/, '')}
+          //       language={match[1]}
+          //       PreTag="div"
+          //       {...props}
+          //     />
+          //   ) : (
+          //     <code className={className} {...props}>
+          //       {children}
+          //     </code>
+          //   )
+          // },
+        }
+      }
     />
   )
 }

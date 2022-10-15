@@ -11,17 +11,23 @@ import {
 } from '../../../lib'
 import { Link } from 'react-router-dom'
 
+type UserProps = {
+  user: UserType
+}
+
 export function User({
-  bio,
-  age,
-  fullname,
-  location,
-  username,
-  avatarUrl,
-  profileId,
-  createdAt,
-}: UserType) {
-  const [followers, setFollowers] = useState<FollowType[]>([])
+  user: {
+    profileId,
+    createdAt,
+    avatarUrl,
+    age,
+    bio,
+    fullname,
+    location,
+    username,
+  },
+}: UserProps) {
+  const [followers, setFollowers] = useState<FollowType[] | null>(null)
   const followersCollectionReference = collection(
     firebaseDb,
     `users/${profileId}/followers`
@@ -65,7 +71,7 @@ export function User({
           tabIndex={0}
           className="rounded-[3px] text-[14px] bg-border inline-block px-[8px] py-[2px]"
         >
-          <span className="font-semibold mr-[5px]">{followers.length}</span>
+          <span className="font-semibold mr-[5px]">{followers?.length}</span>
           Followers
         </p>
 

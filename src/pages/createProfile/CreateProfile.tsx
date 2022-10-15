@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/react-in-jsx-scope */
 import toast from 'react-hot-toast'
-import { useRef, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 
 import { updateDoc, doc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
@@ -18,6 +18,7 @@ import {
 } from '../../lib/'
 
 export default function CreateProfile() {
+  // TODO: use label for triggering input file instead of button with ref.
   const filePickerRef = useRef<any>(null)
   const [selectedFile, setSelectedFile] = useState<any>(null)
   const [loading, setLoading] = useState(false)
@@ -70,11 +71,12 @@ export default function CreateProfile() {
     toast.success('Successfully created your account.')
   }
 
-  const addImageToPost = (e: any) => {
+  const addImageToPost = (event: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader()
 
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0])
+    const file = event.target.files?.[0]
+    if (file) {
+      reader.readAsDataURL(file)
     }
 
     reader.onload = (readerEvent) => {

@@ -13,17 +13,14 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 
-type CardProps = ArticleType
-export function Card({
-  timestamp,
-  articleId,
-  uid,
-  text,
-  title,
-  readMin,
-  coverUrl,
-}: CardProps) {
-  const [profile, setProfile] = useState<UserType[]>([])
+type CardProps = {
+  article: ArticleType
+}
+
+export function Card({ article }: CardProps) {
+  const { coverUrl, title, articleId, text } = article
+
+  const [users, setUsers] = useState<Array<UserType> | null>(null)
 
   const userCollectionReference = collection(
     firebaseDb,
@@ -33,11 +30,12 @@ export function Card({
   useEffect(() => {
     const getProfile = () => {
       onSnapshot(userCollectionReference, (snapshot) => {
-        setProfile(
+        setUsers(
           snapshot.docs.map((doc) => ({ ...doc.data(), profileId: doc.id }))
         )
       })
     }
+
     getProfile()
   }, [])
 
@@ -66,20 +64,10 @@ export function Card({
         />
       </Link>
       <div className="flex justify-between items-baseline mt-[30px]">
-        {profile.map((info) => {
-          return (
-            <Author
-              key={info.profileId}
-              avatarUrl={info.avatarUrl}
-              fullname={info.fullname}
-              readMin={readMin}
-              pin={info.pin}
-              uid={uid}
-              profileId={info.profileId}
-              timestamp={timestamp}
-            />
-          )
-        })}
+        {users &&
+          users.map((user) => {
+            return <Author article={article} user={user} />
+          })}
 
         <Icons articleId={articleId} />
       </div>

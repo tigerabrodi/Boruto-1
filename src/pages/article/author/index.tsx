@@ -1,29 +1,21 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { Link } from 'react-router-dom'
-import { getDateWithTimestamp, getTimestamp } from '../../../lib'
+import {
+  ArticleType,
+  getDateWithTimestamp,
+  getTimestamp,
+  UserType,
+} from '../../../lib'
 import { HiOutlineBookOpen } from 'react-icons/hi'
 
 type AuthorProps = {
-  createdAt: {
-    seconds: number
-    nanoseconds: number
-  }
-  profileId: string
-  avatarUrl: string
-  fullname: string
-  pin: string
-  uid: string
-  readMin: string
+  article: ArticleType
+  user: UserType
 }
 export function Author({
-  createdAt,
-  avatarUrl,
-  fullname,
-  pin,
-  uid,
-  profileId,
-  readMin,
+  article: { uid, readMin },
+  user: { pin, avatarUrl, profileId, fullname, createdAt },
 }: AuthorProps) {
   return (
     <>

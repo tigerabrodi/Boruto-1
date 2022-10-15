@@ -36,23 +36,9 @@ export function Cards() {
 
   return (
     <div className="flex flex-col justify-center">
-      {articles.map(
-        ({ articleId, uid, text, title, readMin, coverUrl, timestamp }) => {
-          return (
-            <Card
-              uid={uid}
-              text={text}
-              subtitle={''}
-              title={title}
-              key={articleId}
-              readMin={readMin}
-              coverUrl={coverUrl}
-              articleId={articleId}
-              timestamp={timestamp}
-            />
-          )
-        }
-      )}
+      {articles.map((article) => {
+        return <Card article={article} key={article.articleId} />
+      })}
     </div>
   )
 }

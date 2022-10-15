@@ -27,33 +27,9 @@ export function Users() {
   }, [firebaseDb])
   return (
     <div className="mt-[15px]">
-      {users.map(
-        ({
-          bio,
-          age,
-          fullname,
-          location,
-          username,
-          avatarUrl,
-          profileId,
-          createdAt,
-        }) => {
-          return (
-            <User
-              bio={bio}
-              age={age}
-              key={profileId}
-              fullname={fullname}
-              location={location}
-              username={username}
-              avatarUrl={avatarUrl}
-              createdAt={createdAt}
-              profileId={profileId}
-              pin={''}
-            />
-          )
-        }
-      )}
+      {users.map((user) => {
+        return <User key={user.profileId} user={user} />
+      })}
     </div>
   )
 }

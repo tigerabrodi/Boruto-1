@@ -9,8 +9,8 @@ type IconsProps = {
   articleId: string
 }
 export function Icons({ articleId }: IconsProps) {
-  const [likes, setLikes] = useState<LikeType[]>([])
-  const [comments, setComments] = useState<CommentType[]>([])
+  const [likes, setLikes] = useState<LikeType[] | null>(null)
+  const [comments, setComments] = useState<CommentType[] | null>(null)
 
   const likesCollectionReference = collection(
     firebaseDb,
@@ -49,14 +49,14 @@ export function Icons({ articleId }: IconsProps) {
         className="text-lightGrey mr-[30px] text-[21px] rounded-[30px] flex items-center"
       >
         <FiThumbsUp className="mr-[5px]" />
-        {likes?.length >= 0 && (
-          <span className="mt-[3px]">{likes?.length}</span>
+        {likes && likes.length >= 0 && (
+          <span className="mt-[3px]">{likes.length}</span>
         )}
       </p>
       <p className="text-lightGrey   text-[25px] rounded-[30px] flex items-center">
         <IoChatbubblesOutline className="mr-[5px]" />
-        {comments?.length >= 0 && (
-          <span className="mt-[3px] text-[21px]">{comments?.length}</span>
+        {comments && comments.length >= 0 && (
+          <span className="mt-[3px] text-[21px]">{comments.length}</span>
         )}
       </p>
     </div>

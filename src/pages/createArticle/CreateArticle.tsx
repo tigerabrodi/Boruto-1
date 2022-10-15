@@ -23,13 +23,14 @@ import { Preview } from './preview'
 // import { Preview } from './preview/preview'
 
 export default function CreateArticle() {
-  const [subtitle, setSubtitle] = useState<boolean>(false)
+  const [isSubtitle, setIsSubtitle] = useState(false)
   const [selectedFiled, setSelectedField] = useState<any>(null)
   const [subtitleField, setSubtitleField] = useState('')
   const [textField, setTextField] = useState('')
   const [titleField, setTitleField] = useState('')
   const [minuteField, setMinuteField] = useState('')
 
+  // TODO: Don't use, and use a label instead of button to trigger file input.
   const filePickerRef = useRef<any>(null)
 
   const { setStatus } = useLoadingStore()
@@ -37,7 +38,7 @@ export default function CreateArticle() {
   const navigate = useNavigate()
 
   const closeSubtitleField = () => {
-    setSubtitle(false)
+    setIsSubtitle(false)
     setSubtitleField('')
   }
 
@@ -112,7 +113,7 @@ export default function CreateArticle() {
             />
 
             <button
-              onClick={() => setSubtitle(true)}
+              onClick={() => setIsSubtitle(true)}
               aria-label="Add subtitle"
               className="z-[2] flex items-center text-[15px] rounded-[30px] ml-[10px] py-[8px] px-[12px] border border-border text-darkGrey transition ease-in-out duration-200 hover:bg-border"
             >
@@ -168,7 +169,7 @@ export default function CreateArticle() {
             className="z-[2] font-semibold h-[100px] text-[36px]   text-dark resize-none"
           />
         </div>
-        {subtitle === true && (
+        {isSubtitle === true && (
           <div className="flex mt-[-10px] flex-col px-[30px] relative">
             <button
               onClick={closeSubtitleField}

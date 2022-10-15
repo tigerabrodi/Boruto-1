@@ -19,7 +19,7 @@ export default function EditProfile() {
 
   const usersDocumentRef = doc(
     firebaseDb,
-    `users/${id}`
+    `/users/${id}`
   ) as DocumentReference<UserType>
 
   useEffect(() => {
