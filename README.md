@@ -4,10 +4,9 @@ Markdown-compatible blog application. More coming soon...
 ### 🧠 - What I've learned so far...
 
 - [Zustand](https://github.com/pmndrs/zustand)
-- E2E-Testing
 - Creating custom hooks
+- E2E Automated Testing
 - How to use [Testing Library](https://github.com/testing-library)
-- Implementing a loading spinner
 - Cypress: what it is, how it works
 - How to add lazy loading to React router
 - Authenticating users with Firebase, including form validation
