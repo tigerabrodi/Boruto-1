@@ -52,7 +52,7 @@ export default function Profile() {
             <div className=" ml-[30px] self-center">
               <Followers profileId={id} />
 
-              <div className="flex items-center mt-[10px]">
+              <div className="flex items-center mt-[8px]">
                 <p
                   tabIndex={0}
                   className=" font-semibold text-base "
@@ -61,9 +61,11 @@ export default function Profile() {
                   {profile.fullname}
                 </p>
                 <p className="text-[22px] mx-[10px]">·</p>
+                <p className=" font-semibold text-base ">{profile.age} y/o</p>
+                <p className="text-[22px] mx-[10px]">·</p>
                 <p
                   tabIndex={0}
-                  className=" text-base "
+                  className=" font-semibold text-base "
                   aria-label={`Your full location`}
                 >
                   {profile.location}
