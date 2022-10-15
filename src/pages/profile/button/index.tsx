@@ -65,7 +65,7 @@ export function Button({ profileId }: ButtonProps) {
           onClick={followUser}
           className="top-[30px] right-[30px] text-blue border border-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverOutlined  transition ease-in-out duration-200 "
         >
-          UnFollow
+          Unfollow
         </button>
       ) : (
         <button

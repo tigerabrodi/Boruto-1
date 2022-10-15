@@ -90,7 +90,7 @@ export default function CreateArticle() {
   }
 
   return (
-    <div className="h-auto py-[150px] flex flex-col">
+    <div className="h-auto py-[120px] flex flex-col">
       <div className="w-[800px] h-[100%] rounded-[8px] border border-border bg-white mx-auto">
         <div className="flex p-[20px] justify-between items-center">
           <div className="flex">
@@ -156,7 +156,7 @@ export default function CreateArticle() {
           ''
         )}
 
-        <div className="flex mt-[-10px] flex-col px-[30px]">
+        <div className="flex flex-col px-[30px]">
           <label htmlFor="Article Title" className="opacity-0 absolute">
             Article Title
           </label>
@@ -165,7 +165,7 @@ export default function CreateArticle() {
             id="Article Title"
             placeholder="Article title..."
             onChange={(event) => setTitleField(event.target.value)}
-            className="z-[2] font-semibold h-[100px] text-[36px] placeholder-dark text-dark resize-none"
+            className="z-[2] font-semibold h-[100px] text-[36px]   text-dark resize-none"
           />
         </div>
         {subtitle === true && (
