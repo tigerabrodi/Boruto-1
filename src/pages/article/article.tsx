@@ -19,9 +19,9 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 
 export default function Article() {
-  const [profile, setProfile] = useState<UserType[]>([])
-  const [isArticle, setIsArticle] = useState<ArticleType | null>(null)
-  const [openModal, setOpenModal] = useState(false)
+  const [users, setUsers] = useState<UserType[] | null>(null)
+  const [article, setArticle] = useState<ArticleType | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const { id } = useParams<ParamsType>()
   const { user } = useAuthContext()
@@ -35,7 +35,7 @@ export default function Article() {
     const unsubscribe = onSnapshot(articleDocumentRef, (doc) => {
       const docData = doc.data()
       if (docData) {
-        setIsArticle(docData)
+        setArticle(docData)
       }
     })
 
@@ -52,7 +52,7 @@ export default function Article() {
   useEffect(() => {
     const getProfile = () => {
       onSnapshot(userCollectionRef, (snapshot) => {
-        setProfile(
+        setUsers(
           snapshot.docs.map((doc) => ({ ...doc.data(), profileId: doc.id }))
         )
       })
@@ -63,61 +63,57 @@ export default function Article() {
   return (
     <>
       {!user?.uid && <InfoModal />}
-      {openModal === true && (
+      {isModalOpen === true && (
         <DeleteArticle
           articleId={id}
-          setOpenModal={setOpenModal}
-          openModal={openModal}
+          setOpenModal={setIsModalOpen}
+          openModal={isModalOpen}
         />
       )}
       <div className="flex flex-col justify-center pb-[50px]">
         <div className="pt-[150px] pb-[15px] flex justify-center ">
-          {isArticle && (
+          {article && (
             <>
               <div className="bg-white p-[30px] w-[800px]  border border-border rounded-[8px] ">
                 <div className="relative">
                   <div
                     className="w-[100%] h-[400px] mx-auto mb-[30px] rounded-[4px] relative bg-no-repeat bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${isArticle.coverUrl})`,
+                      backgroundImage: `url(${article.coverUrl})`,
                     }}
                   />
-                  {isArticle.uid === user?.uid && (
-                    <Buttons setOpenModal={setOpenModal} articleId={id} />
+                  {article.uid === user?.uid && (
+                    <Buttons setOpenModal={setIsModalOpen} articleId={id} />
                   )}
                 </div>
                 <h1
                   className="text-[30px] pb-[10px] font-semibold text-center"
                   tabIndex={0}
                 >
-                  {isArticle.title}
+                  {article.title}
                 </h1>
                 <h2
                   className="text-[28px] pb-[20px]  text-center text-darkGrey"
                   tabIndex={0}
                 >
-                  {isArticle.subtitle}
+                  {article.subtitle}
                 </h2>
 
                 <div className="flex items-center justify-center mb-[30px]">
-                  {profile.map((info) => {
-                    return (
-                      <Author
-                        pin={info.pin}
-                        uid={isArticle.uid}
-                        key={info.profileId}
-                        profileId={info.profileId}
-                        avatarUrl={info.avatarUrl}
-                        fullname={info.fullname}
-                        createdAt={info.createdAt}
-                        readMin={isArticle.readMin}
-                      />
-                    )
-                  })}
+                  {users &&
+                    users.map((user) => {
+                      return (
+                        <Author
+                          user={user}
+                          article={article}
+                          key={user.profileId}
+                        />
+                      )
+                    })}
                 </div>
 
                 <ReactMarkdown
-                  children={isArticle.text}
+                  children={article.text}
                   className="article-preview"
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]}
