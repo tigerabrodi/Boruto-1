@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { CommentType, firebaseDb } from '../../../lib'
 import { T } from '../container'
 import { Comment } from '../comments/comment'
+
 export function Comments({ articleId }: T) {
   const [comments, setComments] = useState<CommentType[]>([])
 
@@ -24,7 +25,9 @@ export function Comments({ articleId }: T) {
       onSnapshot(
         query(commentsCollectionReference, orderBy('timestamp', 'desc')),
         (snapshot) =>
-          setComments(snapshot.docs.map((doc) => ({ ...doc.data() })))
+          setComments(
+            snapshot.docs.map((doc) => ({ ...doc.data(), commentId: doc.id }))
+          )
       ),
     [firebaseDb, articleId]
   )
@@ -38,7 +41,8 @@ export function Comments({ articleId }: T) {
             comment={comment}
             timestamp={timestamp}
             commentUid={commentUid}
-            commentId={''}
+            articleId={articleId}
+            commentId={commentId}
           />
         )
       })}
