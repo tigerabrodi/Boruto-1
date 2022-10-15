@@ -3,6 +3,7 @@ const user = {
   password: 'demonslayer123',
 }
 
+// Remove cache before running test so that we don't end up being already signed in since we signed in, in the previous test.
 beforeEach(() => {
   indexedDB.deleteDatabase('firebaseLocalStorageDb')
 })
