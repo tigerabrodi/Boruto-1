@@ -12,13 +12,17 @@ const user = {
   bio: faker.random.words(7),
 }
 
+beforeEach(() => {
+  indexedDB.deleteDatabase('firebaseLocalStorageDb')
+})
+
 it('Sign up and create an account', () => {
   cy.visit('/')
 
   cy.findByRole('link', { name: 'Home' }).should('be.visible')
 
   // Redirects to sign up page
-  cy.findByRole('button', { name: 'unauthenticated nav menu button' }).click()
+  cy.findByRole('button', { name: 'unauthenticated nav menu' }).click()
   cy.findByRole('link', { name: 'Sign up' }).click()
 
   // User signs up

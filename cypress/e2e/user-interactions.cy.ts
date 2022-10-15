@@ -23,11 +23,15 @@ const articleComment = {
   comment: 'This is my comment.',
 }
 
+beforeEach(() => {
+  indexedDB.deleteDatabase('firebaseLocalStorageDb')
+})
+
 it('User should be able to interact with another user: like articles, and add comments.', () => {
   cy.visit('/')
 
   // Redirects to sign in page
-  cy.findByRole('button', { name: 'unauthenticated nav menu button' }).click()
+  cy.findByRole('button', { name: 'unauthenticated nav menu' }).click()
   cy.findByRole('link', { name: 'Sign in' }).click()
 
   // First user sign in
@@ -43,7 +47,7 @@ it('User should be able to interact with another user: like articles, and add co
   })
 
   // Redirects to create article page
-  cy.findByRole('button', { name: 'authenticated nav menu button' }).click()
+  cy.findByRole('button', { name: 'authenticated nav menu' }).click()
   cy.findByRole('link', { name: 'New article' }).click()
 
   // Creates an article
@@ -61,11 +65,11 @@ it('User should be able to interact with another user: like articles, and add co
   })
 
   //  First user signs out
-  cy.findByRole('button', { name: 'authenticated nav menu button' }).click()
+  cy.findByRole('button', { name: 'authenticated nav menu' }).click()
   cy.findByRole('link', { name: 'Sign Out' }).click()
 
   // Second user sign in
-  cy.findByRole('button', { name: 'unauthenticated nav menu button' }).click()
+  cy.findByRole('button', { name: 'unauthenticated nav menu' }).click()
   cy.findByRole('link', { name: 'Sign in' }).click()
   cy.findByLabelText('Email').type(secondUser.email)
   cy.findByLabelText('Password').type(secondUser.password)
@@ -87,6 +91,6 @@ it('User should be able to interact with another user: like articles, and add co
   cy.findByRole('button', { name: 'Post' }).click()
 
   // Second users signs out
-  cy.findByRole('button', { name: 'authenticated nav menu button' }).click()
+  cy.findByRole('button', { name: 'authenticated nav menu' }).click()
   cy.findByRole('link', { name: 'Sign Out' }).click()
 })
