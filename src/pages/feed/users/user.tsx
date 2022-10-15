@@ -9,11 +9,9 @@ import {
   getTimestamp,
   UserType,
 } from '../../../lib'
-import { useAuthContext } from '../../../context'
 import { Link } from 'react-router-dom'
 
 export function User({
-  pin,
   bio,
   age,
   fullname,

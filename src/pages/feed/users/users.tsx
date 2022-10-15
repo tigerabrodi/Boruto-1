@@ -29,7 +29,6 @@ export function Users() {
     <div className="mt-[15px]">
       {users.map(
         ({
-          pin,
           bio,
           age,
           fullname,
@@ -41,7 +40,6 @@ export function Users() {
         }) => {
           return (
             <User
-              pin={pin}
               bio={bio}
               age={age}
               key={profileId}
@@ -51,6 +49,7 @@ export function Users() {
               avatarUrl={avatarUrl}
               createdAt={createdAt}
               profileId={profileId}
+              pin={''}
             />
           )
         }
