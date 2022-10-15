@@ -18,7 +18,7 @@ export function Unauthenticated() {
   return (
     <div>
       <Button
-        aria-label="unauthenticated nav menu button"
+        aria-label="unauthenticated nav menu"
         aria-controls={open ? 'unauthenticated nav menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -37,7 +37,7 @@ export function Unauthenticated() {
         <img
           src={DEFAULT_AVATAR}
           alt=""
-          className="w-20 mb-[15px] mx-auto mb-[30px] mt-[20px]"
+          className="w-20 mx-auto mb-[30px] mt-[20px]"
         />
         <p
           className="w-[250px] text-[24px] font-semibold text-dark  mb-[10px] text-center  mx-[10px]"

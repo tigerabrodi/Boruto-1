@@ -19,7 +19,7 @@ export function Authenticated() {
   const { setStatus } = useLoadingStore()
   const { user } = useAuthContext()
   const navigate = useNavigate()
-  const open = Boolean(anchorElement)
+  const isOpen = Boolean(anchorElement)
 
   const avatarDocumentRef = doc(
     firebaseDb,
@@ -60,19 +60,19 @@ export function Authenticated() {
       {isUser && (
         <>
           <button
-            aria-controls={open ? 'authenticated nav menu' : undefined}
+            aria-controls={isOpen ? 'authenticated-nav-menu' : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            aria-label="authenticated nav menu button"
+            aria-expanded={isOpen}
+            aria-label="authenticated nav menu"
             onClick={handleClick}
           >
             <img src={isUser.avatarUrl} alt="" className="w-14 rounded-[50%]" />
           </button>
           <Menu
-            id="authenticated nav menu"
+            id="authenticated-nav-menu"
             aria-label='"authenticated nav menu"'
             anchorEl={anchorElement}
-            open={open}
+            open={isOpen}
             onClose={handleClose}
             MenuListProps={{
               'aria-labelledby': 'basic-button',
