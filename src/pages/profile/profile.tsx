@@ -6,7 +6,7 @@ import { FiEdit3 } from 'react-icons/fi'
 import { Link, useParams } from 'react-router-dom'
 import { useAuthContext } from '../../context'
 import { firebaseDb, ParamsType, UserType } from '../../lib'
-import { Articles } from './index'
+import { Articles, Button } from './index'
 
 export default function Profile() {
   const { user } = useAuthContext()
@@ -43,13 +43,21 @@ export default function Profile() {
               />
               <p
                 tabIndex={0}
-                className="text-lightGrey text-[14px] mt-[5px] text-center"
+                className="text-lightGrey text-[14px] mt-[10px] text-center"
                 aria-label={`Your username`}
               >
                 @{profile.username}
               </p>
             </div>
             <div className=" ml-[30px] self-center">
+              <div className="flex items-center mb-[15px]">
+                <p className="mr-[15px] text-darkGrey">
+                  <span className="font-semibold">2</span> Articles
+                </p>
+                <p className="text-darkGrey">
+                  <span className="font-semibold">3</span> Followers
+                </p>
+              </div>
               <p
                 tabIndex={0}
                 className="font-semibold text-base mb-[8px]"
@@ -72,14 +80,16 @@ export default function Profile() {
                 {profile.bio}
               </p>
             </div>
-            {profile.pin === user?.uid && (
+            {profile.pin === user?.uid ? (
               <Link
-                to={`/profile/edit/${id}`}
+                to={`/profiles/edit/${id}`}
                 aria-label="Edit your profile"
                 className="top-[30px] right-[30px] text-white bg-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverFilled  transition ease-in-out duration-200 "
               >
                 <FiEdit3 className="self-center mr-[6px]" /> Edit
               </Link>
+            ) : (
+              <Button profileId={id} />
             )}
           </div>
           <Articles pin={profile.pin} fullname={profile.fullname} />

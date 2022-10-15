@@ -52,3 +52,9 @@ export type LikeType = {
   article: string
   likeId: string
 }
+
+export type FollowType = {
+  followUid: string
+  profile: string
+  followersId: string
+}
