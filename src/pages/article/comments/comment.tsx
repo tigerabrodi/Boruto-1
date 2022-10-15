@@ -42,7 +42,10 @@ export function Comment({ comment, commentUid, timestamp }: CommentType) {
                   className="w-[60px] rounded-[50%] mr-[15px]"
                 />
                 <span>
-                  <Link className="font-semibold" to={`/profile/${profileId}`}>
+                  <Link
+                    className="font-semibold hover:underline"
+                    to={`/profiles/${profileId}`}
+                  >
                     {fullname}
                   </Link>
                   <p className="text-darkGrey ] pt-[3px]">

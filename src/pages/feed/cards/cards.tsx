@@ -35,7 +35,7 @@ export function Cards() {
   }, [firebaseDb])
 
   return (
-    <div className="flex flex-col justify-center pt-[150px]">
+    <div className="flex flex-col justify-center">
       {articles.map(
         ({ articleId, uid, text, title, readMin, coverUrl, timestamp }) => {
           return (

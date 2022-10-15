@@ -68,7 +68,7 @@ export default function Signp() {
         setIsEmailError(false)
       }, 3000)
     }
-    navigate('/create/profile')
+    navigate('/profiles/create')
     return true
   }
 
