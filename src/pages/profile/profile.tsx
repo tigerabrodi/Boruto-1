@@ -84,7 +84,7 @@ export default function Profile() {
               <Link
                 to={`/profiles/edit/${id}`}
                 aria-label="Edit your profile"
-                className="top-[30px] right-[30px] text-white bg-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverFilled  transition ease-in-out duration-200 "
+                className="top-[30px] right-[30px] text-white bg-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverFilled  transition ease-in-out duration-200"
               >
                 <FiEdit3 className="self-center mr-[6px]" /> Edit
               </Link>

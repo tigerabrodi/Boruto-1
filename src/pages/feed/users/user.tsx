@@ -40,7 +40,7 @@ export function User({
         Since: {getDateWithTimestamp(getTimestamp(createdAt))}
       </p>
       <div>
-        <Link to={`/profiles/${profileId}`}>
+        <Link to={`/profiles/${profileId}`} aria-label="Visit profile">
           <img
             src={avatarUrl}
             alt="Your profile picture"
@@ -58,7 +58,7 @@ export function User({
       </div>
       <div className=" ml-[30px] self-center">
         <p className="rounded-[3px] text-[14px] bg-border inline-block px-[8px] py-[2px]">
-          <span className="font-semibold mr-[3px]">{followers.length}</span>{' '}
+          <span className="font-semibold mr-[5px]">{followers.length}</span>
           Followers
         </p>
 
