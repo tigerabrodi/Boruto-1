@@ -6,7 +6,7 @@ import { FiEdit3 } from 'react-icons/fi'
 import { Link, useParams } from 'react-router-dom'
 import { useAuthContext } from '../../context'
 import { firebaseDb, ParamsType, UserType } from '../../lib'
-import { Articles, Button } from './index'
+import { Articles, Button, Followers } from './index'
 
 export default function Profile() {
   const { user } = useAuthContext()
@@ -50,31 +50,29 @@ export default function Profile() {
               </p>
             </div>
             <div className=" ml-[30px] self-center">
-              <div className="flex items-center mb-[15px]">
-                <p className="mr-[15px] text-darkGrey">
-                  <span className="font-semibold">2</span> Articles
+              <Followers profileId={id} />
+
+              <div className="flex items-center mt-[10px]">
+                <p
+                  tabIndex={0}
+                  className=" font-semibold text-base "
+                  aria-label={`Your full name`}
+                >
+                  {profile.fullname}
                 </p>
-                <p className="text-darkGrey">
-                  <span className="font-semibold">3</span> Followers
+                <p className="text-[22px] mx-[10px]">·</p>
+                <p
+                  tabIndex={0}
+                  className=" text-base "
+                  aria-label={`Your full location`}
+                >
+                  {profile.location}
                 </p>
               </div>
+
               <p
                 tabIndex={0}
-                className="font-semibold text-base mb-[8px]"
-                aria-label={`Your full name`}
-              >
-                {profile.fullname}
-              </p>
-              <p
-                tabIndex={0}
-                className="rounded-[3px] text-[14px] bg-border inline-block px-[8px] py-[2px]"
-                aria-label={`Your full location`}
-              >
-                {profile.location}
-              </p>
-              <p
-                tabIndex={0}
-                className="mt-[8px]  text-base"
+                className="mt-[5px]  text-base "
                 aria-label={`Your full biography`}
               >
                 {profile.bio}
