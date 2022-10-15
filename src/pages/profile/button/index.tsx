@@ -60,20 +60,24 @@ export function Button({ profileId }: ButtonProps) {
   }
   return (
     <>
-      {hasFollowed ? (
-        <button
-          onClick={followUser}
-          className="top-[30px] right-[30px] text-blue border border-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverOutlined  transition ease-in-out duration-200 "
-        >
-          Unfollow
-        </button>
-      ) : (
-        <button
-          onClick={followUser}
-          className="top-[30px] right-[30px] text-white bg-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverFilled  transition ease-in-out duration-200 "
-        >
-          Follow
-        </button>
+      {user?.uid && (
+        <>
+          {hasFollowed ? (
+            <button
+              onClick={followUser}
+              className="top-[30px] right-[30px] text-blue border border-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverOutlined  transition ease-in-out duration-200 "
+            >
+              Unfollow
+            </button>
+          ) : (
+            <button
+              onClick={followUser}
+              className="top-[30px] right-[30px] text-white bg-blue absolute flex py-[6px] px-[12px] text-base rounded-[30px] hover:bg-hoverFilled  transition ease-in-out duration-200 "
+            >
+              Follow
+            </button>
+          )}
+        </>
       )}
     </>
   )
