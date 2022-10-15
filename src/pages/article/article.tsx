@@ -86,10 +86,16 @@ export default function Article() {
                     <Buttons setOpenModal={setOpenModal} articleId={id} />
                   )}
                 </div>
-                <h1 className="text-[30px] pb-[10px] font-semibold text-center">
+                <h1
+                  className="text-[30px] pb-[10px] font-semibold text-center"
+                  tabIndex={0}
+                >
                   {isArticle.title}
                 </h1>
-                <h2 className="text-[28px] pb-[20px]  text-center text-darkGrey">
+                <h2
+                  className="text-[28px] pb-[20px]  text-center text-darkGrey"
+                  tabIndex={0}
+                >
                   {isArticle.subtitle}
                 </h2>
 

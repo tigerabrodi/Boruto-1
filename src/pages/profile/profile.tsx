@@ -61,7 +61,13 @@ export default function Profile() {
                   {profile.fullname}
                 </p>
                 <p className="text-[22px] mx-[10px]">·</p>
-                <p className=" font-semibold text-base ">{profile.age} y/o</p>
+                <p
+                  tabIndex={0}
+                  className=" font-semibold text-base "
+                  aria-label={`${profile.age} years old`}
+                >
+                  {profile.age} y/o
+                </p>
                 <p className="text-[22px] mx-[10px]">·</p>
                 <p
                   tabIndex={0}

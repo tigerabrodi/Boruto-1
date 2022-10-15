@@ -41,13 +41,20 @@ export function Author({
           >
             {fullname}
           </Link>
-          <p className="mx-[15px] text-[20px] text-darkGrey ">·</p>
+          <p className="mx-[15px] text-[20px] text-darkGrey">·</p>
 
-          <p className=" flex items-center text-[18px] text-darkGrey">
+          <p
+            className=" flex items-center text-[18px] text-darkGrey"
+            tabIndex={0}
+          >
             {getDateWithTimestamp(getTimestamp(createdAt))}
           </p>
           <p className="mx-[15px] text-[20px] text-darkGrey ">·</p>
-          <p className="flex items-center text-[18px] text-darkGrey ">
+          <p
+            className="flex items-center text-[18px] text-darkGrey "
+            tabIndex={0}
+            aria-label={`${readMin} read minutes`}
+          >
             <HiOutlineBookOpen className="text-[20px] mr-[5px]" />
             {readMin} read min
           </p>

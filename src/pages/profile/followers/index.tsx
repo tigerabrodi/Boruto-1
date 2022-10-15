@@ -25,8 +25,11 @@ export function Followers({ profileId }: FollowersProps) {
   )
 
   return (
-    <p className="rounded-[3px] text-[14px] bg-border inline-block px-[8px] py-[2px]">
-      <span className="font-semibold mr-[3px]">{followers.length}</span>{' '}
+    <p
+      tabIndex={0}
+      className="rounded-[3px] text-[14px] bg-border inline-block px-[8px] py-[2px]"
+    >
+      <span className="font-semibold mr-[5px]">{followers.length}</span>
       Followers
     </p>
   )
