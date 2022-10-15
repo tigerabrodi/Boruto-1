@@ -56,7 +56,6 @@ export function User({
           to={`/profiles/${profileId}`}
           tabIndex={0}
           className="text-lightGrey text-[14px] text-center hover:underline"
-          aria-label={`Your username`}
         >
           @{username}
         </Link>

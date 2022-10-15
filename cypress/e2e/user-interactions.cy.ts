@@ -2,7 +2,8 @@ const DEMO_ARTICLE_COVER = 'demo-article-cover.jpg'
 import { faker } from '@faker-js/faker'
 
 const firstUser = {
-  email: 'mitsuki@gmail.com',
+  username: '@cat_lover123',
+  email: 'annachan@gmail.com',
   password: 'demonslayer123',
 }
 
@@ -19,7 +20,7 @@ const article = {
 }
 
 const articleComment = {
-  comment: faker.random.words(4),
+  comment: 'This is my comment.',
 }
 
 it('User should be able to interact with another user: like articles, and add comments.', () => {
@@ -63,20 +64,29 @@ it('User should be able to interact with another user: like articles, and add co
   cy.findByRole('button', { name: 'authenticated nav menu button' }).click()
   cy.findByRole('link', { name: 'Sign Out' }).click()
 
-  // First user sign in
+  // Second user sign in
   cy.findByRole('button', { name: 'unauthenticated nav menu button' }).click()
   cy.findByRole('link', { name: 'Sign in' }).click()
   cy.findByLabelText('Email').type(secondUser.email)
   cy.findByLabelText('Password').type(secondUser.password)
   cy.findByRole('button', { name: 'Sign in' }).click()
 
-  // Redirects to create article page
-  cy.findByRole('link', { name: article.title }).click()
+  // Redirects to first users profile
+  cy.findByRole('button', { name: 'Users' }).click()
+  cy.findByRole('link', { name: `${firstUser.username}` }).click()
 
-  //   Likes the article
+  // Follows first user
+  cy.findByRole('button', { name: 'Follow' }).click()
+
+  // Redirects to first users article
+  cy.findByRole('link', { name: `${article.title}` }).click()
+
+  //   Likes and comment on first users article
   cy.findByRole('button', { name: 'Like article' }).click()
-
-  // Comments on the article
   cy.findByLabelText('Comment').type(articleComment.comment)
   cy.findByRole('button', { name: 'Post' }).click()
+
+  // Second users signs out
+  cy.findByRole('button', { name: 'authenticated nav menu button' }).click()
+  cy.findByRole('link', { name: 'Sign Out' }).click()
 })
