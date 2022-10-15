@@ -18,10 +18,12 @@ export const InfoContextProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [popup, setPopup] = useState(false)
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
 
   return (
-    <InfoContext.Provider value={{ popup, setPopup }}>
+    <InfoContext.Provider
+      value={{ popup: isPopupOpen, setPopup: setIsPopupOpen }}
+    >
       {children}
     </InfoContext.Provider>
   )
